@@ -6,11 +6,11 @@ if( !empty( $_REQUEST['skip'] )) {
 }
 
 if( !empty( $_REQUEST['db_download'] )) {
-//	if( !$gInstall->fetchRemoteXmlFiles() ) {
-//		$feedback['error'] = $gInstall->mErrors;
-//	} else {
-//		$feedback['success'] = 'All required database table data was downloaded and stored in:<br />'.dirname( $gInstall->getXmlFilepath( $gInstall->mTables[0] ) );
-//	}
+	if( !$gInstall->fetchRemoteXmlFiles() ) {
+		$feedback['error'] = $gInstall->mErrors;
+	} else {
+		$feedback['success'] = 'All required database table data was downloaded and stored in:<br />'.dirname( $gInstall->getXmlFilepath( $gInstall->mTables[0] ) );
+	}
 
 	$tables   = $gInstall->mTables;
 	$tables[] = 'kernel_config';
