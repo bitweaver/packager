@@ -1,6 +1,6 @@
 <?php
 /**
- * @version $Header: /cvsroot/bitweaver/_bit_packager/install.php,v 1.1 2007/04/21 14:20:11 squareing Exp $
+ * @version $Header: /cvsroot/bitweaver/_bit_packager/install.php,v 1.2 2007/04/21 16:06:12 squareing Exp $
  * @package install
  * @subpackage upgrade
  */
@@ -9,14 +9,18 @@
  * required setup
  */
 // make sure the installer is accessible. some users might have change perms or removed it entirely.
-if( !@include( '../install/install_inc.php' )) {
+if( !@include_once( '../install/install_inc.php' )) {
 	require_once( '../bit_setup_inc.php' );
 	$gBitSystem->fatalError( 'Please ensure that the installer package is accessible and that the installer is located at' ).": ".BIT_ROOT_URL."install/";
 }
 
-require_once( '../install/install_inc.php' );
 $gBitSystem->verifyPermission( 'p_admin' );
 $gBitSystem->verifyPackage( 'packager' );
+
+require_once( PACKAGER_PKG_PATH.'PackagerInstall.php' );
+global $gInstall;
+$gInstall = new PackagerInstall();
+$gBitSmarty->assign_by_ref( 'gInstall', $gInstall );
 
 // this variable will be appended to the template file called - useful for displaying messages after data input
 $app = '';

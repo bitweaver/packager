@@ -1,8 +1,4 @@
 <?php
-$gBitSystem->verifyPackage( 'packager' );
-require_once( PACKAGER_PKG_PATH."PackagerInstall.php" );
-$gInstall = new PackagerInstall();
-
 $feedback = array();
 $progressReport = array();
 

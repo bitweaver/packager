@@ -18,11 +18,17 @@
 			database.
 		</p>
 
+		<h3>The following files were found on your server</h3>
 		<ul>
-			{foreach from=$gInstall->mTables item=file}
-				<li><a href="{$gInstall->getXmlUrl($file)}">{$file}.xml</a></li>
+			{foreach from=$xmlFiles key=table item=file}
+				<li>
+					{if $xmlFiles.$table}
+						{biticon iname=dialog-ok iexplain=OK} <a href="{$gInstall->getXmlUrl($table)}">{$table}.xml</a>
+					{else}
+						{biticon iname=dialog-error iexplain=Missing} {$table}.xml
+					{/if}
+				</li>
 			{/foreach}
-			<li><a href="{$gInstall->getXmlUrl('kernel_config')}">kernel_config.xml</a></li>
 		</ul>
 
 		<div class="submit">

@@ -1,10 +1,7 @@
 <?php
 $gBitSystem->verifyPackage( 'packager' );
 require_once( PACKAGER_PKG_PATH."Packager.php" );
-require_once( PACKAGER_PKG_PATH."PackagerInstall.php" );
-
 $gPackager = new Packager();
-$gInstall = new PackagerInstall();
 
 $feedback = array();
 
@@ -17,7 +14,6 @@ $listHash = $_REQUEST;
 $packageList = $gPackager->getList( $listHash );
 $gBitSmarty->assign( 'packageList', $packageList );
 $gBitSmarty->assign( 'gPackager', $gPackager );
-$gBitSmarty->assign( 'gInstall', $gInstall );
 $gBitSmarty->assign( 'feedback', $feedback );
 $gBitSmarty->assign( 'next_step', $step + 1 );
 ?>

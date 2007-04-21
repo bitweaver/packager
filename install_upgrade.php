@@ -1,8 +1,4 @@
 <?php
-$gBitSystem->verifyPackage( 'packager' );
-require_once( PACKAGER_PKG_PATH."PackagerInstall.php" );
-$gInstall = new PackagerInstall();
-
 // redirect if something is wrong
 if( empty( $_SESSION['upgrades'] )) {
 	header( "Location: ".$_SERVER['PHP_SELF']."?noselection=1&step=".--$step );

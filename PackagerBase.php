@@ -138,6 +138,7 @@ class PackagerBase extends BitBase {
 	 * @return TRUE on success, FALSE on failure - mErrors will contain reason for failure
 	 */
 	function getXmlUrl( $pTable, $pRemote = FALSE ) {
+		global $gBitSystem;
 		if( $pRemote ) {
 			if( $gBitSystem->isFeatureActive( 'packager_rem_pretty_urls' )) {
 				return "http://".$this->mHost.'/packager/xml/'.$pTable;
@@ -200,15 +201,16 @@ class PackagerBase extends BitBase {
 				$xmlFile = $this->getXmlFilepath( $table );
 				// make sure we only update when local files are older than a day
 				if(( !is_file( $xmlFile ) || is_file( $xmlFile ) && ( mktime() - filemtime( $xmlFile ) > 86400 ))) {
-					if( $xml = bit_http_request( $this->getXmlUrl( $table, TRUE ))) {
+					$xml = bit_http_request( $this->getXmlUrl( $table, TRUE ));
+					if( !preg_match( "/404 Not Found/", $xml )) {
 						if( $handle = fopen( $xmlFile, 'w' )) {
 							fwrite( $handle, $xml );
 							fclose( $handle );
 						} else {
-							$this->mErrors['write'] = tra( 'There was a problem trying to write the file to your server.' );
+							$this->mErrors['write'] = tra( 'There was a problem trying to write the files to your server.' );
 						}
 					} else {
-						$this->mErrors['download'] = tra( 'There was a problem trying to download the file from the server.' );
+						$this->mErrors['download'] = tra( 'There was a problem trying to download the files from the server.' );
 					}
 				} else {
 					$this->mErrors['download'] = tra( 'The files are up to date and were not updated again.' );

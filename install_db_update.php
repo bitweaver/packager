@@ -1,8 +1,4 @@
 <?php
-$gBitSystem->verifyPackage( 'packager' );
-require_once( PACKAGER_PKG_PATH."PackagerInstall.php" );
-$gInstall = new PackagerInstall();
-
 $feedback = array();
 
 if( !empty( $_REQUEST['skip'] )) {
@@ -10,11 +6,18 @@ if( !empty( $_REQUEST['skip'] )) {
 }
 
 if( !empty( $_REQUEST['db_download'] )) {
-	if( !$gInstall->fetchRemoteXmlFiles() ) {
-		$feedback['error'] = $gInstall->mErrors;
-	} else {
-		$feedback['success'] = 'All required database table data was downloaded and stored in:<br />'.dirname( $gInstall->getXmlFilepath( $gInstall->mTables[0] ) );
+//	if( !$gInstall->fetchRemoteXmlFiles() ) {
+//		$feedback['error'] = $gInstall->mErrors;
+//	} else {
+//		$feedback['success'] = 'All required database table data was downloaded and stored in:<br />'.dirname( $gInstall->getXmlFilepath( $gInstall->mTables[0] ) );
+//	}
+
+	$tables   = $gInstall->mTables;
+	$tables[] = 'kernel_config';
+	foreach( $tables as $table ) {
+		$xmlFiles[$table] = is_file( $gInstall->getXmlFilepath( $table ));
 	}
+	$gBitSmarty->assign( 'xmlFiles', $xmlFiles );
 }
 
 if( !empty( $_REQUEST['db_update'] )) {

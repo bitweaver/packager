@@ -1,6 +1,6 @@
 <?php
 /**
- * @version $Header: /cvsroot/bitweaver/_bit_packager/install_welcome.php,v 1.1 2007/04/21 14:20:11 squareing Exp $
+ * @version $Header: /cvsroot/bitweaver/_bit_packager/install_welcome.php,v 1.2 2007/04/21 16:06:12 squareing Exp $
  * @package install
  * @subpackage upgrade
  */
@@ -13,16 +13,6 @@ if( preg_match( '/mysql/', $gBitDbType )) {
 ini_set( "max_execution_time", "86400" );
 if( ini_get( "max_execution_time" ) != 86400 ) {
 	$gBitSmarty->assign( 'max_execution_time', ini_get( "max_execution_time" ) );
-}
-
-require_once( PACKAGER_PKG_PATH."PackagerInstall.php" );
-$gInstall = new PackagerInstall( @BitBase::verifyId( $_REQUEST['packager_id'] ) ? $_REQUEST['packager_id'] : NULL );
-if( @BitBase::verifyId( $_REQUEST['packager_id'] )) {
-	if( !$gInstall->isServer() ) {
-		$gInstall->load();
-	} else {
-		$gBitSystem->fatalError( 'Only packager clients can use the package manager to install software.' );
-	}
 }
 
 // assign next step in installation process

@@ -1,7 +1,4 @@
 <?php
-require_once( PACKAGER_PKG_PATH."PackagerInstall.php" );
-
-$gInstall = new PackagerInstall();
 if( $gInstall->isServer() ) {
 	$gBitSystem->fatalError( 'Only packager clients can use the package manager to install software.' );
 }
