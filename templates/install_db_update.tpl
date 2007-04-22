@@ -24,12 +24,17 @@
 				<li>
 					{if $xmlFiles.$table}
 						{biticon iname=dialog-ok iexplain=OK} <a href="{$gInstall->getXmlUrl($table)}">{$table}.xml</a>
+						{assign var=ok value=1}
 					{else}
 						{biticon iname=dialog-error iexplain=Missing} {$table}.xml
 					{/if}
 				</li>
 			{/foreach}
 		</ul>
+
+		{if !$ok}
+			{formfeedback error="There are no xml files on your server. We can not proceed with the package installation process unless you know that you have a valid database."}
+		{/if}
 
 		<div class="submit">
 			<input type="submit" name="skip" value="Skip Database Update" />
