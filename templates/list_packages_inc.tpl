@@ -8,7 +8,6 @@
 			<th>Installed Version</th>
 		{/if}
 		<th>{smartlink step=$step ititle="Latest Release" isort="release_date"}</th>
-		{$smarty.const.BIT_INSTALL}
 		{if $smarty.const.BIT_INSTALL|defined}
 			<th>Upgrade</th>
 		{/if}
@@ -46,6 +45,10 @@
 
 		<tr class="{cycle}">
 			<td colspan="6">{$package.description}</td>
+		</tr>
+	{foreachelse}
+		<tr>
+			<td class="norecords" colspan="6">{tr}No Records found{/tr}</td>
 		</tr>
 	{/foreach}
 </table>
