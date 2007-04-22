@@ -15,6 +15,7 @@ $packageTypes = array(
 	'Navigation'                => 'Navigation',
 	'Ratings'                   => 'Ratings',
 	'Personalisation'           => 'Personalisation',
+	'Package Maintenance'       => 'Package Maintenance',
 	'News or Blogs'             => 'News or Blogs',
 	'Maps and Navigation'       => 'Maps and Navigation',
 	'Shop'                      => 'Shop',
