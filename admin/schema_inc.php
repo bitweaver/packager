@@ -65,6 +65,8 @@ foreach( array_keys( $tables ) AS $tableName ) {
 	$gBitInstaller->registerSchemaTable( PACKAGER_PKG_NAME, $tableName, $tables[$tableName] );
 }
 
+$gBitInstaller->registerPackageVersion( PACKAGER_PKG_NAME, '0.0.0.dev' );
+
 $gBitInstaller->registerPackageInfo( PACKAGER_PKG_NAME, array(
 	'description' => "A powerful way to manage bitweaver packages.",
 	'license' => '<a href="http://www.gnu.org/licenses/licenses.html#LGPL">LGPL</a>',
