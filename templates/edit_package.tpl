@@ -42,7 +42,7 @@
 			<div class="row">
 				{formlabel label="License" for="license"}
 				{forminput}
-					{html_options options=$licenseTypes values=$licenseTypes name=license_id selected=$editInfo.license_id}{requred}
+					{html_options options=$licenseTypes values=$licenseTypes name=license_id selected=$editInfo.license_id}{required}
 					{formhelp note="Please select the license that best fits your needs. If there is no such license, please enter one below."}
 				{/forminput}
 			</div>

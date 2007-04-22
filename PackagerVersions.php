@@ -133,29 +133,34 @@ class PackagerVersions extends PackagerBase {
 	function storeUpload( &$pParamHash ) {
 		// we now extract the new version of the package and perform some simple checks to see if everything is in order.
 		if( !empty( $pParamHash['upload'] ) && $extracted = liberty_process_archive( $pParamHash['upload'] )) {
-			// 1. check to see if there is a dir named the same as the package
-			if( !is_dir( $extracted."/".$pParamHash['store']['package'] )) {
-				$this->mErrors['package_dir'] = tra( "The archive you uploaded does not contain a directory with the same name as your package" ).": ".$pParamHash['store']['package'];
-			} else {
-				// 2. check for a set of files
-				$fileChecks = array( 'bit_setup_inc.php' );
+			// check to see if there is a dir named the same as the package
+			if( is_dir( $extracted."/".$pParamHash['store']['package'] )) {
+				// check for a set of files
+				$fileChecks = array( 'bit_setup_inc.php', 'admin/schema_inc.php' );
 				foreach( $fileChecks as $file ) {
 					if( !is_file( $extracted."/".$pParamHash['store']['package']."/".$file )) {
 						$this->mErrors['missing_file'] = tra( 'The archive you uploaded is missing at least one required file.' );
 					}
 				}
 
-				$schemafile = $extracted."/".$pParamHash['store']['package']."/admin/schema_inc.php";
-				if( $new = $this->getVersionFromFile( $schemafile )) {
-					$pParamHash['store'] = array_merge( $pParamHash['store'], $new );
-					// we know that version and package are set. now we need to make sure the version provided is higher than the latest one in the database
-					$latest = $this->getLatestVersion( $pParamHash['store']['package'] );
-					if( empty( $this->mErrors ) && !empty( $latest ) && $this->versionCompare( $new, $latest ) !== 1 ) {
-						$this->mErrors['version'] = tra( 'The version number you provided is lower or equal to the one provided in the database. You can not upload older versions of any given package.' );
+				if( empty( $this->mErrors )) {
+					$schemafile = $extracted."/".$pParamHash['store']['package']."/admin/schema_inc.php";
+					if( $new = $this->getVersionFromFile( $schemafile )) {
+						$pParamHash['store'] = array_merge( $pParamHash['store'], $new );
+						// we know that version and package are set. now we need to make sure the version provided is higher than the latest one in the database
+						$latest = $this->getLatestVersion( $pParamHash['store']['package'] );
+						if( !empty( $latest ) && $this->versionCompare( $new, $latest ) !== 1 ) {
+							$this->mErrors['version'] = tra( 'The version number you provided is lower or equal to the one provided in the database. You can not upload older versions of any given package.' );
+						} else {
+							// now that we're sure that everyting is in order, we can start removig stuff.
+							$this->unlinkDebris( $extracted."/".$pParamHash['store']['package'] );
+						}
+					} else {
+						$this->mErrors['version'] = tra( 'You did not provide a valid version using registerPackageVersion() in your schema_inc.php file.' );
 					}
-				} else {
-					$this->mErrors['version'] = tra( 'You did not provide a valid version using registerPackageVersion() in your schema_inc.php file.' );
 				}
+			} else {
+				$this->mErrors['package_dir'] = tra( "The archive you uploaded does not contain a directory with the same name as your package" ).": ".$pParamHash['store']['package'];
 			}
 		} else {
 			$this->mErrors['move'] = tra( 'I could not extract the file you uploaded. Please make sure the archive is valid. Also please use a common archive format such as .zip, .rar or .tar.gz.' );
@@ -204,6 +209,34 @@ class PackagerVersions extends PackagerBase {
 		}
 
 		return( count( $this->mErrors ) == 0 );
+	}
+
+	/**
+	 * recursively remove any unwanted debris from the uploaded package
+	 * 
+	 * @param array $pDir 
+	 * @access public
+	 * @return TRUE on success, FALSE on failure - mErrors will contain reason for failure
+	 */
+	function unlinkDebris( $pDir ) {
+		if( is_dir( $pDir ) && $handle = opendir( $pDir )) {
+			// fix dir if no trailing slash
+			if( !preg_match( "!/$!", $pDir )) {
+				$pDir .= '/';
+			}
+
+			while( FALSE !== ( $file = readdir( $handle ))) {
+				if( $file != '.' && $file != '..' ) {
+					if( preg_match( "/^CVS$/", $file )) {
+						unlink_r( $pDir.$file );
+					} elseif( preg_match( "!^\..*\.swp$!", $file )) {
+						unlink( $pDir.$file );
+					} elseif( is_dir( $file )) {
+						$this->unlinkDebris( $pDir.$file );
+					}
+				}
+			}
+		}
 	}
 
 	/**
