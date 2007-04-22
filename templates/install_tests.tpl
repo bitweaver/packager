@@ -43,7 +43,7 @@
 		</table>
 
 		{if $error}
-			<p class="error">Soemthing seems to have gone wrong. Please visit our online documentation to check on how to proceed.</p>
+			<p class="error">Something seems to have gone wrong. Please visit our online documentation to check on how to proceed.</p>
 		{elseif $warning}
 			<p class="warning">There seems to have been some minor problems. You can try ignoring this or you can visit our online documentation to see if there is help regarding this issue.</p>
 		{else}

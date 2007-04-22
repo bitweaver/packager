@@ -430,6 +430,14 @@ class PackagerBase extends BitBase {
  * @param array $b 
  * @access public
  */
+function schemafile_version_compare( $a, $b ) {
+	preg_match( "/".PACKAGER_VERSION_REGEX."/", $a, $am );
+	preg_match( "/".PACKAGER_VERSION_REGEX."/", $b, $bm );
+	$av = $am[1].( !empty( $am[2] ) ? $am[2] : '' );
+	$bv = $bm[1].( !empty( $bm[2] ) ? $bm[2] : '' );
+	return PackagerBase::versionCompare( $av, $bv );
+}
+
 function array_version_compare( $a, $b ) {
 	return PackagerBase::versionCompare( $a, $b );
 }

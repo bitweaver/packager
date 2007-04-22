@@ -5,7 +5,7 @@ if( $gInstall->isServer() ) {
 $gBitSmarty->assign_by_ref( 'gInstall', $gInstall );
 
 // we'll just use the themes package to play with.
-$original = $gInstall->getInstallPath( 'themes' );
+$testdir  = $gInstall->getInstallPath( 'themes' );
 $backup   = $gInstall->getStoragePath( 'backups' ).'_dummy';
 $tempfile = $gInstall->getStoragePath( 'packages' ).'temp.zip';
 
@@ -55,8 +55,8 @@ if( !empty( $_REQUEST['perform_checks'] )) {
 	}
 
 	// move
-	if( rename( $original, $backup )) {
-		rename( $backup, $original );
+	if( @rename( $testdir, $backup )) {
+		rename( $backup, $testdir );
 		$pp['move']['result'] = 'ok';
 	}
 

@@ -1,5 +1,6 @@
 <?php
 require_once( PACKAGER_PKG_PATH."PackagerBase.php" );
+require_once( PACKAGER_PKG_PATH."Packager.php" );
 
 /**
  * Packager 
