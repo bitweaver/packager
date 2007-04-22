@@ -13,8 +13,9 @@ if( empty( $_REQUEST['packager_id'] )) {
 } elseif( !empty( $gVersions->mInfo )) {
 	$fileHash = $gVersions->mInfo;
 	if( is_readable( $fileHash['source_file'] )) {
-		$gVersions->addHit();
 		require_once( PACKAGER_PKG_PATH.'download_inc.php' );
+		$gVersions->addHit();
+		exit();
 	} else {
 		$gBitSystem->fatalError( 'The requested file could not be found.' );
 	}

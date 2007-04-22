@@ -174,7 +174,7 @@ class PackagerVersions extends PackagerBase {
 			chdir( $cwd );
 
 			// we can now go on to do normal stuff again.
-			if( !empty( $shellResult ) && is_file( $archive )) {
+			if( !empty( $shellResult ) && is_file( $extracted.'/'.$archive )) {
 				$pParamHash['file']['extracted']  = $extracted;
 				$pParamHash['file']['archive']    = $extracted."/".$archive;
 				$pParamHash['store']['file_size'] = filesize( $pParamHash['file']['archive'] );
@@ -199,7 +199,7 @@ class PackagerVersions extends PackagerBase {
 				}
 				unlink_r( $pParamHash['file']['extracted'] );
 			} else {
-				$this->mErrors['move'] = tra( 'I could not create an archive from the file you uploaded.' );
+				$this->mErrors['archive'] = tra( 'I could not create an archive from the file you uploaded.' );
 			}
 		}
 
@@ -415,11 +415,11 @@ class PackagerVersions extends PackagerBase {
 	 */
 	function addHit() {
 		if( $this->isServer() && $this->isValid() ) {
-			$query = "UPDATE `".BIT_DB_PREFIX."packager_versions` SET `downloads`=`downloads`+1, WHERE `packager_id` = ?";
+			$query = "UPDATE `".BIT_DB_PREFIX."packager_versions` SET `downloads`=`downloads`+1 WHERE `packager_id` = ?";
 			$result = $this->mDb->query( $query, array( $this->mPackagerId ) );
 			$affected_rows = $this->mDb->Affected_Rows();
 			if( !$affected_rows ) {
-				$query = "INSERT INTO `".BIT_DB_PREFIX."packager_versions` ( `downloads` ) VALUES (?) WHERE `packager_id` = ?";
+				$query = "UPDATE `".BIT_DB_PREFIX."packager_versions` SET `downloads`=? WHERE `packager_id` = ?";
 				$result = $this->mDb->query( $query, array( 1, $this->mContentId ) );
 			}
 		}

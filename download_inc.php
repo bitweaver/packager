@@ -26,5 +26,4 @@ if( is_readable( $fileHash['source_file'] )) {
 		readfile( $fileHash['source_file'] );
 	}
 }
-die;
 ?>

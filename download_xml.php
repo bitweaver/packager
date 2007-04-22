@@ -18,6 +18,7 @@ if( empty( $_REQUEST['table'] )) {
 		$fileHash['filename']      = $_REQUEST['table'].'.xml';
 
 		require_once( PACKAGER_PKG_PATH.'download_inc.php' );
+		exit();
 	} else {
 		$gBitSystem->fatalError( 'The requested file could not be found.' );
 	}
