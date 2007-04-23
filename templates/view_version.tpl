@@ -40,6 +40,9 @@
 			{formlabel label="Actions"}
 			{forminput}
 				<a href="{$gVersions->mInfo.package_url}">{biticon iname=large/go-down ipackage=icons iexplain="Download"}</a>
+				{if $gVersions->isOwner()}
+					<a href="{$smarty.const.PACKAGER_PKG_URL}edit_version.php?packager_id={$gVersions->mPackagerId}">{biticon iname=large/accessories-text-editor ipackage=icons iexplain="Edit"}</a>
+				{/if}
 				{formhelp note=""}
 			{/forminput}
 		</div>
