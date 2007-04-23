@@ -419,7 +419,7 @@ class PackagerBase extends BitBase {
 	function verifyServer() {
 		global $gBitSystem;
 		if( !$this->isServer() ) {
-			$gBitSystem->fatalError( 'You can only view this page on a host server.' );
+			$gBitSystem->fatalError( tra( 'You can only view this page on a host server.' ));
 		}
 	}
 }

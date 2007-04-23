@@ -13,9 +13,9 @@ $gBitSystem->verifyPermission( 'p_packager_edit_package' );
 $feedback = array();
 
 if( !empty( $_REQUEST['package'] ) && empty( $_REQUEST['process_package'] ) && empty( $gPackager->mInfo )) {
-	$gBitSystem->fatalError( 'The package you are looking for can not be found.' );
+	$gBitSystem->fatalError( tra( 'The package you are looking for can not be found.' ));
 } elseif( !empty( $gPackager->mInfo ) && !$gPackager->isOwner() ) {
-	$gBitSystem->fatalError( 'Only the package owner may edit this package.' );
+	$gBitSystem->fatalError( tra( 'Only the package owner may edit this package.' ));
 } elseif( !empty( $_REQUEST['process_package'] )) {
 	if( $gPackager->store( $_REQUEST )) {
 		$gPackager->load();

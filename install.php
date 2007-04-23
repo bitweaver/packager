@@ -1,6 +1,6 @@
 <?php
 /**
- * @version $Header: /cvsroot/bitweaver/_bit_packager/install.php,v 1.2 2007/04/21 16:06:12 squareing Exp $
+ * @version $Header: /cvsroot/bitweaver/_bit_packager/install.php,v 1.3 2007/04/23 09:36:31 squareing Exp $
  * @package install
  * @subpackage upgrade
  */
@@ -11,7 +11,7 @@
 // make sure the installer is accessible. some users might have change perms or removed it entirely.
 if( !@include_once( '../install/install_inc.php' )) {
 	require_once( '../bit_setup_inc.php' );
-	$gBitSystem->fatalError( 'Please ensure that the installer package is accessible and that the installer is located at' ).": ".BIT_ROOT_URL."install/";
+	$gBitSystem->fatalError( tra( 'Please ensure that the installer package is accessible and that the installer is located at' )).": ".BIT_ROOT_URL."install/";
 }
 
 $gBitSystem->verifyPermission( 'p_admin' );

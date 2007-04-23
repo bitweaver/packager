@@ -20,7 +20,7 @@ if( empty( $_REQUEST['table'] )) {
 		require_once( PACKAGER_PKG_PATH.'download_inc.php' );
 		exit();
 	} else {
-		$gBitSystem->fatalError( 'The requested file could not be found.' );
+		$gBitSystem->fatalError( tra( 'The requested file could not be found.' ));
 	}
 }
 ?>

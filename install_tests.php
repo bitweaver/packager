@@ -1,6 +1,6 @@
 <?php
 if( $gInstall->isServer() ) {
-	$gBitSystem->fatalError( 'Only packager clients can use the package manager to install software.' );
+	$gBitSystem->fatalError( tra( 'Only packager clients can use the package manager to install software.' ));
 }
 $gBitSmarty->assign_by_ref( 'gInstall', $gInstall );
 

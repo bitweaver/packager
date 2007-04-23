@@ -9,7 +9,7 @@ require_once( PACKAGER_PKG_PATH."PackagerVersions.php" );
 require_once( PACKAGER_PKG_PATH."lookup_package.php" );
 
 if( empty( $_REQUEST['packager_id'] )) {
-	$gBitSystem->fatalError( 'Without an id, we do not know what file you want to download.' );
+	$gBitSystem->fatalError( tra( 'Without an id, we do not know what file you want to download.' ));
 } elseif( !empty( $gVersions->mInfo )) {
 	$fileHash = $gVersions->mInfo;
 	if( is_readable( $fileHash['source_file'] )) {
@@ -17,7 +17,7 @@ if( empty( $_REQUEST['packager_id'] )) {
 		$gVersions->addHit();
 		exit();
 	} else {
-		$gBitSystem->fatalError( 'The requested file could not be found.' );
+		$gBitSystem->fatalError( tra( 'The requested file could not be found.' ));
 	}
 }
 ?>
