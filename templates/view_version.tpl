@@ -1,11 +1,5 @@
 {strip}
 <div class="display packager">
-	{if $gVersions->isOwner()}
-		<div class="floaticon">
-			{smartlink ititle="Edit Package Details" ifile="edit_version.php" ibiticon="icons/accessories-text-editor" packager_id=$gVersions->mPackagerId}
-		</div>
-	{/if}
-
 	<div class="header">
 		<h1>{tr}View Package Version{/tr}</h1>
 	</div>
