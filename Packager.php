@@ -320,5 +320,37 @@ class Packager extends PackagerBase {
 	function isValid() {
 		return( !empty( $this->mPackage ));
 	}
+
+	function expunge( $pPackage = NULL ) {
+		if( !empty( $pPackage )) {
+			$this->mPackage = $pPackage;
+		}
+
+		if( $this->isValid() ) {
+			$this->load();
+
+			$this->mDb->StartTrans();
+			// first we get all related versions
+			$query = "SELECT `packager_id` FROM `".BIT_DB_PREFIX."packager_versions` WHERE `package` = ?";
+			$ids = $this->mDb->getCol( $query, array( $this->mPackage ));
+			foreach( $ids as $id ) {
+				$version = new PackagerVersions( $id );
+				$version->load();
+				$version->expunge();
+			}
+
+			if( !$this->mDb->query( "DELETE FROM `".BIT_DB_PREFIX."packager_packages` WHERE `package` = ?", array( $this->mPackage ))) {
+				$this->mErrors['delete'] = tra( 'The data could not be removed from the database.' );
+			}
+
+			if( count( $this->mErrors ) == 0 ) {
+				$this->mDb->CompleteTrans();
+			} else {
+				$this->mDb->RollbackTrans();
+			}
+		}
+		$this->postStore();
+		return( count( $this->mErrors ) == 0 );
+	}
 }
 ?>

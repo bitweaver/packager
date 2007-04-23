@@ -458,5 +458,18 @@ class PackagerVersions extends PackagerBase {
 		}
 		return TRUE;
 	}
+
+	function expunge() {
+		if( $this->isValid( TRUE )) {
+			@unlink( $this->getPackageFilepath() );
+			$this->mDb->query( "DELETE FROM `".BIT_DB_PREFIX."packager_changelogs` WHERE `packager_id`=?", array( $this->mPackagerId ));
+			$this->mDb->query( "DELETE FROM `".BIT_DB_PREFIX."packager_requirements` WHERE `packager_id`=?", array( $this->mPackagerId ));
+			if( !$this->mDb->query( "DELETE FROM `".BIT_DB_PREFIX."packager_versions` WHERE `packager_id` = ?", array( $this->mPackagerId ))) {
+				$this->mErrors['delete'] = tra( 'The data could not be removed from the database.' );
+			}
+		}
+		$this->postStore();
+		return( count( $this->mErrors ) == 0 );
+	}
 }
 ?>

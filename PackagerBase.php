@@ -382,6 +382,7 @@ class PackagerBase extends BitBase {
 	// ================================== Odds and Ends ==================================
 	/**
 	 * check to see if the user who is viewing / editing a given item is the owner of the item.
+	 * editing stuff is only possible on the server, so this will also perform an isServer() check
 	 *
 	 * @access public
 	 * @return TRUE on success, FALSE on failure - mErrors will contain reason for failure
@@ -389,7 +390,7 @@ class PackagerBase extends BitBase {
 	function isOwner() {
 		global $gBitUser;
 		if( $this->isServer() && $this->isValid() ) {
-			return( $this->mInfo['user_id'] == $gBitUser->mUserId );
+			return( $gBitUser->isAdmin() || $this->mInfo['user_id'] == $gBitUser->mUserId );
 		}
 	}
 

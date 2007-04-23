@@ -14,7 +14,11 @@
 	</tr>
 	{foreach from=$packageList item=package}
 		<tr class="{cycle values="odd,even" advance=0}">
-			<td><a href="{$package.display_url}">{$package.package|capitalize}</a> <small>({$package.package_type|default:"{tr}Other{/tr}"})</small></td>
+			<td>
+				<a href="{$package.display_url}">{$package.package|capitalize}</a>
+				<br />
+				<small>({$package.package_type|default:"{tr}Other{/tr}"})</small>
+			</td>
 			<td>
 				{assign var=license_id value=$package.license_id}
 				<a href="{$gPackager->mLicenses.$license_id.license_url}">{$gPackager->mLicenses.$license_id.title}</a>
@@ -27,7 +31,7 @@
 				{if $package.latest_version.packager_id}
 					<a href="{$package.latest_version.display_url}">{$package.latest_version.version} {$package.latest_version.status}</a>
 					{if $package.latest_version.is_security_release == 'y'}{biticon iname=dialog-warning iexplain="Security Release"}{/if}<br />
-					{$package.latest_version.release_date|bit_short_date}
+					<small>{$package.latest_version.release_date|bit_short_date}</small>
 				{/if}
 			</td>
 			{if $smarty.const.BIT_INSTALL|defined}

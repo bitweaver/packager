@@ -3,6 +3,7 @@
 	{if $gPackager->isOwner()}
 		<div class="floaticon">
 			{smartlink ititle="Edit Package Details" ifile="edit_package.php" ibiticon="icons/accessories-text-editor" package=$gPackager->mInfo.package}
+			{smartlink ititle="Remove Package" ifile="edit_package.php" ibiticon="icons/edit-delete" remove=$gPackager->mInfo.package}
 		</div>
 	{/if}
 

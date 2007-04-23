@@ -12,7 +12,9 @@ $gBitSystem->verifyPermission( 'p_packager_edit_package' );
 
 $feedback = array();
 
-if( !empty( $gPackager->mInfo ) && !$gPackager->isOwner() ) {
+if( !empty( $_REQUEST['package'] ) && empty( $_REQUEST['process_package'] ) && empty( $gPackager->mInfo )) {
+	$gBitSystem->fatalError( 'The package you are looking for can not be found.' );
+} elseif( !empty( $gPackager->mInfo ) && !$gPackager->isOwner() ) {
 	$gBitSystem->fatalError( 'Only the package owner may edit this package.' );
 } elseif( !empty( $_REQUEST['process_package'] )) {
 	if( $gPackager->store( $_REQUEST )) {
@@ -21,6 +23,23 @@ if( !empty( $gPackager->mInfo ) && !$gPackager->isOwner() ) {
 	} else {
 		$feedback['error'] = $gPackager->mErrors;
 	}
+} elseif( !empty( $_REQUEST['remove'] )) {
+	if( !empty( $_REQUEST['confirm'] )) {
+		if( $gPackager->expunge( $_REQUEST['remove'] )) {
+			bit_redirect( PACKAGER_PKG_URL );
+		} else {
+			$feedback['error'] = $gPackager->mErrors;
+		}
+	}
+
+	$gBitSystem->setBrowserTitle( 'Confirm removal of '.$_REQUEST['remove'] );
+	$formHash['remove'] = $_REQUEST['remove'];
+	$msgHash = array(
+		'label' => 'Remove Package and all Versions',
+		'confirm_item' => $_REQUEST['remove'],
+		'warning' => 'This will remove the package, all associated versions and their files. This cannot be undone!',
+	);
+	$gBitSystem->confirmDialog( $formHash, $msgHash );
 }
 
 $gBitSmarty->assign( 'feedback', $feedback );
