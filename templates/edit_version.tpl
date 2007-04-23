@@ -4,7 +4,7 @@
 	</div>
 
 	<div class="body">
-		{form enctype="multipart/form-data" legend="Edit Package"}
+		{form enctype="multipart/form-data" legend="Edit Version"}
 			{formfeedback hash=$feedback}
 
 			<div class="row">
