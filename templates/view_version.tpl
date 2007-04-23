@@ -73,8 +73,9 @@
 			<div class="row">
 				{formlabel label="Requirements"}
 				{forminput}
+					{* we really need some sort of nested dependency tree here *}
 					<ul class="data">
-						{foreach from=$package.requirements item=requirement}
+						{foreach from=$gVersions->mInfo.requirements item=requirement}
 							<li class="item">{$requirement.required_package} {$requirement.min_version} {$requirement.max_version}</li>
 						{/foreach}
 					</ul>

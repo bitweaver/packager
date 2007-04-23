@@ -47,10 +47,11 @@ class PackagerVersions extends PackagerBase {
 				$this->mInfo['mime_type']           = 'application/zip';
 				$this->mInfo['last_modified']       = $this->mInfo['release_date'];
 				$this->mInfo['source_file']         = $this->getPackageFilepath( $this->mInfo );
-				$this->mInfo['changelog']           = $this->loadChangelog();
 				$this->mInfo['package_display_url'] = Packager::getDisplayUrl( $aux );
 				$this->mInfo['display_url']         = $this->getDisplayUrl( $aux );
 				$this->mInfo['package_url']         = $this->getPackageUrl( $aux );
+				$this->mInfo['changelog']           = $this->loadChangelog();
+				$this->mInfo['requirements']        = $this->loadRequirements();
 			}
 		}
 
@@ -374,6 +375,18 @@ class PackagerVersions extends PackagerBase {
 
 	// ================================== Requirements ==================================
 	/**
+	 * loadRequirements 
+	 * 
+	 * @access public
+	 * @return TRUE on success, FALSE on failure - mErrors will contain reason for failure
+	 */
+	function loadRequirements() {
+		if( $this->isValid() ) {
+			$query = "SELECT pkgr.* FROM `".BIT_DB_PREFIX."packager_requirements` pkgr WHERE pkgr.`packager_id`=? ORDER BY ".$this->mDb->convertSortmode( 'required_package_asc' );
+			return( $this->mDb->getAll( $query, array( $this->mPackagerId )));
+		}
+	}
+	/**
 	 * storeRequirements 
 	 * 
 	 * @param mixed $pParamHash
@@ -414,13 +427,14 @@ class PackagerVersions extends PackagerBase {
 						$ret[] = array(
 							'required_package' => trim( strtolower( $hash[0] )),
 							'min_version'      => $hash[1],
-							'max_version'      => preg_match( "/^".PACKAGER_VERSION_REGEX."$/", $hash[2] ) ? $hash[2] : NULL,
+							'max_version'      => ( !empty( $hash[2] ) && preg_match( "/^".PACKAGER_VERSION_REGEX."$/", $hash[2] )) ? $hash[2] : NULL,
 						);
 					}
 				}
 			}
 		}
 
+		vd($ret);
 		return $ret;
 	}
 
@@ -433,7 +447,7 @@ class PackagerVersions extends PackagerBase {
 	function isValid( $pLoad = FALSE ) {
 		if( @BitBase::verifyId( $this->mPackagerId )) {
 			// make sure we are up to date and fully loaded
-			if( $pLoad && empty( $this->mInfo ) || $this->mPackagerId != $this->mInfo['packager_id'] ) {
+			if( $pLoad && ( empty( $this->mInfo['packager_id'] ) || $this->mPackagerId != $this->mInfo['packager_id'] )) {
 				$this->load();
 			}
 			return TRUE;
