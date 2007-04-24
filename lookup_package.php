@@ -13,6 +13,8 @@ if( @BitBase::verifyId( $_REQUEST['packager_id'] )) {
 	$gVersions = new PackagerVersions();
 }
 
+$gPackager->verifyServer();
+
 $gBitSmarty->assign_by_ref( 'gPackager', $gPackager );
 $gBitSmarty->assign_by_ref( 'gVersions', $gVersions );
 ?>

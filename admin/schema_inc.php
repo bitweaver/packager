@@ -39,9 +39,9 @@ $tables = array (
 			, CONSTRAINT `packager_packager_id_ref` FOREIGN KEY ( `packager_id` ) REFERENCES `".BIT_DB_PREFIX."packager_versions`( `packager_id` )'
 	",
 
-	'packager_requirements' => "
+	'packager_dependencies' => "
 		packager_id I8 NOTNULL,
-		required_package C(64) NOTNULL,
+		dependency C(64) NOTNULL,
 		min_version C(64),
 		max_version C(64)
 		CONSTRAINT '

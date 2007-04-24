@@ -21,6 +21,7 @@ if( !empty( $_REQUEST['package'] ) && empty( $_REQUEST['process_package'] ) && e
 		$gPackager->load();
 		bit_redirect( $gPackager->getDisplayUrl() );
 	} else {
+		$gBitSmarty->assign( 'editInfo', $_REQUEST );
 		$feedback['error'] = $gPackager->mErrors;
 	}
 } elseif( !empty( $_REQUEST['remove'] )) {
@@ -43,6 +44,8 @@ if( !empty( $_REQUEST['package'] ) && empty( $_REQUEST['process_package'] ) && e
 }
 
 $gBitSmarty->assign( 'feedback', $feedback );
-$gBitSmarty->assign( 'editInfo', $gPackager->mInfo );
+if( empty( $_REQUEST['process_package'] )) {
+	$gBitSmarty->assign( 'editInfo', $gPackager->mInfo );
+}
 $gBitSystem->display( 'bitpackage:packager/edit_package.tpl', tra( 'Edit Package Details' ));
 ?>

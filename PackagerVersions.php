@@ -50,8 +50,8 @@ class PackagerVersions extends PackagerBase {
 				$this->mInfo['package_display_url'] = Packager::getDisplayUrl( $aux );
 				$this->mInfo['display_url']         = $this->getDisplayUrl( $aux );
 				$this->mInfo['package_url']         = $this->getPackageUrl( $aux );
-				$this->mInfo['changelog']           = $this->loadChangelog();
-				$this->mInfo['requirements']        = $this->loadRequirements();
+				$this->mInfo['changelog']           = $this->getChangelog();
+				$this->mInfo['dependencies']        = $this->getDependencies();
 			}
 		}
 
@@ -75,9 +75,9 @@ class PackagerVersions extends PackagerBase {
 				$this->mDb->associateInsert( $table, $pParamHash['store'] );
 			}
 
-			if( !empty( $pParamHash['requirements'] )) {
-				if( !$this->storeRequirements( $pParamHash['requirements'] )) {
-					$this->mErrors['requirements'] = tra( 'There was a problem storing the requirements.' );
+			if( !empty( $pParamHash['dependencies'] )) {
+				if( !$this->storeDependencies( $pParamHash['dependencies'] )) {
+					$this->mErrors['dependencies'] = tra( 'There was a problem storing the dependencies.' );
 				}
 			}
 
@@ -315,12 +315,12 @@ class PackagerVersions extends PackagerBase {
 
 	// ================================== Changelogs ==================================
 	/**
-	 * loadChangelog 
+	 * getChangelog 
 	 * 
 	 * @access public
 	 * @return TRUE on success, FALSE on failure - mErrors will contain reason for failure
 	 */
-	function loadChangelog() {
+	function getChangelog() {
 		if( $this->isValid() ) {
 			$query = "SELECT pkgc.* FROM `".BIT_DB_PREFIX."packager_changelogs` pkgc WHERE pkgc.`packager_id`=? ORDER BY ".$this->mDb->convertSortmode( 'flag_desc' ).", ".$this->mDb->convertSortmode( 'log_date_desc' );
 			return( $this->mDb->getAll( $query, array( $this->mPackagerId )));
@@ -373,33 +373,34 @@ class PackagerVersions extends PackagerBase {
 	}
 
 
-	// ================================== Requirements ==================================
+	// ================================== Dependencies ==================================
 	/**
-	 * loadRequirements 
+	 * getDependencies 
 	 * 
 	 * @access public
 	 * @return TRUE on success, FALSE on failure - mErrors will contain reason for failure
 	 */
-	function loadRequirements() {
+	function getDependencies() {
 		if( $this->isValid() ) {
-			$query = "SELECT pkgr.* FROM `".BIT_DB_PREFIX."packager_requirements` pkgr WHERE pkgr.`packager_id`=? ORDER BY ".$this->mDb->convertSortmode( 'required_package_asc' );
+			$query = "SELECT pkgr.* FROM `".BIT_DB_PREFIX."packager_dependencies` pkgr WHERE pkgr.`packager_id`=? ORDER BY ".$this->mDb->convertSortmode( 'dependency_asc' );
 			return( $this->mDb->getAll( $query, array( $this->mPackagerId )));
 		}
 	}
+
 	/**
-	 * storeRequirements 
+	 * storeDependencies 
 	 * 
 	 * @param mixed $pParamHash
 	 * @access public
 	 * @return TRUE on success, FALSE on failure - mErrors will contain reason for failure
 	 * @TODO
 	 */
-	function storeRequirements( $pString ) {
-		if( $this->isValid() && $requirements = $this->parseRequirements( $pString )) {
-			$table = BIT_DB_PREFIX."packager_requirements";
+	function storeDependencies( $pString ) {
+		if( $this->isValid() && $dependencies = $this->parseDependencies( $pString )) {
+			$table = BIT_DB_PREFIX."packager_dependencies";
 			// first we remove all old entries for this version
 			$this->mDb->query( "DELETE FROM `$table` WHERE `packager_id`=?", array( $this->mPackagerId ));
-			foreach( $requirements as $req ) {
+			foreach( $dependencies as $req ) {
 				$req['packager_id'] = $this->mPackagerId;
 				$this->mDb->associateInsert( $table, $req );
 			}
@@ -408,33 +409,32 @@ class PackagerVersions extends PackagerBase {
 	}
 
 	/**
-	 * verifyRequirements 
+	 * verifyDependencies 
 	 * 
 	 * @param array $pParamHash 
 	 * @access public
 	 * @return TRUE on success, FALSE on failure - mErrors will contain reason for failure
 	 */
-	function parseRequirements( $pString ) {
+	function parseDependencies( $pString ) {
 		$ret = FALSE;
 		if( !empty( $pString ) && is_string( $pString )) {
-			$requirements = explode( "\n", $pString );
-			foreach( $requirements as $requirement ) {
-				$hash = explode( ' ', preg_replace( "/\s+/", " ", trim( $requirement )));
+			$dependencies = explode( "\n", $pString );
+			foreach( $dependencies as $dependency ) {
+				$hash = explode( ' ', preg_replace( "/\s+/", " ", trim( $dependency )));
 				if( !empty( $hash[0] ) && preg_match( "/^".PACKAGER_VERSION_REGEX."$/", $hash[1] )) {
 					if( !empty( $hash[2] ) && preg_match( "/^".PACKAGER_VERSION_REGEX."$/", $hash[2] ) && version_compare( $hash[1], $hash[2] ) == 1 ) {
 						// max_version is smaller than min_version
 					} else {
 						$ret[] = array(
-							'required_package' => trim( strtolower( $hash[0] )),
-							'min_version'      => $hash[1],
-							'max_version'      => ( !empty( $hash[2] ) && preg_match( "/^".PACKAGER_VERSION_REGEX."$/", $hash[2] )) ? $hash[2] : NULL,
+							'dependency'  => trim( strtolower( $hash[0] )),
+							'min_version' => $hash[1],
+							'max_version' => ( !empty( $hash[2] ) && preg_match( "/^".PACKAGER_VERSION_REGEX."$/", $hash[2] )) ? $hash[2] : NULL,
 						);
 					}
 				}
 			}
 		}
 
-		vd($ret);
 		return $ret;
 	}
 
@@ -477,7 +477,7 @@ class PackagerVersions extends PackagerBase {
 		if( $this->isValid( TRUE )) {
 			$this->mDb->StartTrans();
 			$this->mDb->query( "DELETE FROM `".BIT_DB_PREFIX."packager_changelogs` WHERE `packager_id`=?", array( $this->mPackagerId ));
-			$this->mDb->query( "DELETE FROM `".BIT_DB_PREFIX."packager_requirements` WHERE `packager_id`=?", array( $this->mPackagerId ));
+			$this->mDb->query( "DELETE FROM `".BIT_DB_PREFIX."packager_dependencies` WHERE `packager_id`=?", array( $this->mPackagerId ));
 			if( $this->mDb->query( "DELETE FROM `".BIT_DB_PREFIX."packager_versions` WHERE `packager_id` = ?", array( $this->mPackagerId ))) {
 				$this->mDb->CompleteTrans();
 				@unlink( $this->getPackageFilepath() );

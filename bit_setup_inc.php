@@ -1,7 +1,7 @@
 <?php
 /**
  * @author   xing <xing@synapse.plus.com>
- * @version  $Revision: 1.1 $
+ * @version  $Revision: 1.2 $
  * @package  Treasury
  * @subpackage functions
  */
@@ -20,7 +20,7 @@ if( $gBitSystem->isPackageActive( 'packager' ) ) {
 			'index_url'     => PACKAGER_PKG_URL.'index.php',
 			'menu_template' => 'bitpackage:packager/menu_packager.tpl',
 		);
-		$gBitSystem->registerAppMenu( $menuHash );
+//		$gBitSystem->registerAppMenu( $menuHash );
 	}
 }
 ?>

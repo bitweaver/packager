@@ -25,6 +25,8 @@ if( !empty( $_REQUEST['process_package'] )) {
 	}
 }
 
+$gVersions->satisfyDependencies();
+
 $gBitSmarty->assign( 'feedback', $feedback );
 $gBitSystem->display( 'bitpackage:packager/view_version.tpl', tra( 'Upload Package' ));
 ?>

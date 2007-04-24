@@ -80,7 +80,7 @@ class PackagerInstall extends PackagerVersions {
 		return $ret;
 	}
 
-	function checkRequirements( $pPackage ) {
+	function checkDependencies( $pPackage ) {
 		// TODO: return a hash of versions that need to be fulfilled
 	}
 

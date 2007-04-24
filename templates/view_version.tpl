@@ -69,14 +69,14 @@
 			</div>
 		{/if}
 
-		{if $gVersions->mInfo.requirements}
+		{if $gVersions->mInfo.dependencies}
 			<div class="row">
-				{formlabel label="Requirements"}
+				{formlabel label="Dependencies"}
 				{forminput}
 					{* we really need some sort of nested dependency tree here *}
 					<ul class="data">
-						{foreach from=$gVersions->mInfo.requirements item=requirement}
-							<li class="item">{$requirement.required_package} {$requirement.min_version} {$requirement.max_version}</li>
+						{foreach from=$gVersions->mInfo.dependencies item=dep}
+							<li class="item">{$dep.dependency} {$dep.min_version} {$dep.max_version}</li>
 						{/foreach}
 					</ul>
 				{/forminput}

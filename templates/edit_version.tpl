@@ -41,14 +41,14 @@
 			</div>
 
 			<div class="row">
-				{formlabel label="Requirements" for="requirements"}
+				{formlabel label="Dependencies" for="dependencies"}
 				{forminput}
-					<textarea rows="3" cols="50" name="requirements" id="requirements">
-						{foreach from=$package.requirements item=requirement}
-							{$requirement.required_package} {$requirement.min_version} {$requirement.max_version}
+					<textarea rows="3" cols="50" name="dependencies" id="dependencies">
+						{foreach from=$package.dependencies item=dep}
+							{$dep.dependency} {$dep.min_version} {$dep.max_version}
 						{/foreach}
 					</textarea>
-					{formhelp note="Please enter any specific package requirements here. Each requirement on a new line using the format: package min_version max_version"}
+					{formhelp note="Please enter any specific package dependencies here. Each dependency on a new line using the format: package min_version max_version"}
 				{/forminput}
 			</div>
 

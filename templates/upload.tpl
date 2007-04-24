@@ -47,10 +47,10 @@
 				</div>
 
 				<div class="row">
-					{formlabel label="Requirements" for="requirements"}
+					{formlabel label="Dependencies" for="dependencies"}
 					{forminput}
-						<textarea rows="5" cols="50" name="requirements" id="requirements">{$smarty.request.requirements|escape}</textarea>
-						{formhelp note="Please enter any specific package requirements here. Each requirement on a new line using the format: package min_version max_version"}
+						<textarea rows="5" cols="50" name="dependencies" id="dependencies">{$smarty.request.dependencies|escape}</textarea>
+						{formhelp note="Please enter any specific package dependencies here. Each dependency on a new line using the format: package min_version max_version"}
 					{/forminput}
 				</div>
 

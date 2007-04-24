@@ -32,7 +32,7 @@ class PackagerBase extends BitBase {
 			'packager_versions',
 			'packager_licenses',
 			'packager_changelogs',
-			'packager_requirements',
+			'packager_dependencies',
 		);
 
 		// this is used for testing and debugging. if i forget to remove this, please do so now - xing
