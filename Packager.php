@@ -11,6 +11,8 @@ class Packager extends PackagerBase {
 	var $mPackage;
 	// list of available licenses
 	var $mLicenses = array();
+	// list of available types
+	var $mTypes = array();
 
 	/**
 	 * Initiate class
@@ -21,6 +23,7 @@ class Packager extends PackagerBase {
 		PackagerBase::PackagerBase();
 		$this->mPackage = $pPackage;
 		$this->loadLicenses();
+		$this->loadTypes();
 	}
 
 	/**
@@ -94,6 +97,12 @@ class Packager extends PackagerBase {
 			$this->mErrors['package'] = tra( 'You need to provide a valid package name.' );
 		}
 
+		if( !empty( $pParamHash['type_id'] )) {
+			$pParamHash['store']['type_id'] = $pParamHash['type_id'];
+		} elseif( !empty( $pParamHash['type_new_title'] )) {
+			$pParamHash['store']['type_id'] = $this->storeType( $pParamHash );
+		}
+
 		if( !empty( $pParamHash['license_id'] )) {
 			$pParamHash['store']['license_id'] = $pParamHash['license_id'];
 		} elseif( !empty( $pParamHash['license_new_title'] ) && !empty( $pParamHash['license_new_url'] )) {
@@ -105,7 +114,6 @@ class Packager extends PackagerBase {
 		}
 
 		$pParamHash['store']['user_id']      = $gBitUser->mUserId;
-		$pParamHash['store']['package_type'] = ( !empty( $pParamHash['package_type'] ) ? $pParamHash['package_type'] : NULL );
 		$pParamHash['store']['description']  = ( !empty( $pParamHash['description'] ) ? strip_tags( $pParamHash['description'] ) : NULL );
 		$pParamHash['store']['is_service']   = ( !empty( $pParamHash['is_service'] ) ? 'y' : 'n' );
 
@@ -170,6 +178,57 @@ class Packager extends PackagerBase {
 		return $ret;
 	}
 
+	/* ======================================= Types ======================================= */
+	/**
+	 * loadType 
+	 * 
+	 * @access public
+	 * @return TRUE on success, FALSE on failure - mErrors will contain reason for failure
+	 */
+	function loadTypes() {
+		$this->mTypes = $this->mDb->getAssoc( "SELECT `type_id` AS hash_key, * FROM `".BIT_DB_PREFIX."packager_types`" );
+	}
+
+	/**
+	 * storeType 
+	 * 
+	 * @param array $pParamHash 
+	 * @access public
+	 * @return TRUE on success, FALSE on failure - mErrors will contain reason for failure
+	 */
+	function storeType( $pParamHash ) {
+		$ret = FALSE;
+		if( $this->verifyType( $pParamHash )) {
+			// if we have an entry with the same name, we update it
+			$table = BIT_DB_PREFIX."packager_types";
+			if( $type_id = $this->mDb->getOne( "SELECT `type_id` FROM `$table` WHERE `title`=?", array( $pParamHash['type_new_title'] ))) {
+				$this->mDb->associateUpdate( $table, $pParamHash['type_store'], array( 'type_id' => $type_id ));
+			} else {
+				$ret = $pParamHash['type_store']['type_id'] = $this->mDb->GenID( 'packager_type_id_seq' );
+				$this->mDb->associateInsert( $table, $pParamHash['type_store'] );
+			}
+		}
+		return $ret;
+	}
+
+	/**
+	 * verifyType 
+	 * 
+	 * @param array $pParamHash 
+	 * @access public
+	 * @return TRUE on success, FALSE on failure - mErrors will contain reason for failure
+	 */
+	function verifyType( &$pParamHash ) {
+		if( !empty( $pParamHash['type_new_title'] )) {
+			$pParamHash['type_store']['title'] = substr( $pParamHash['type_new_title'], 0, 100 );
+		} else {
+			$this->mErrors['type_title'] = tra( 'You need to provede a title for the new type.' );
+		}
+
+		return( count( $this->mErrors ) == 0 );
+	}
+
+	/* ======================================= Licences ======================================= */
 	/**
 	 * loadLicenses 
 	 * 
@@ -211,7 +270,7 @@ class Packager extends PackagerBase {
 	 */
 	function verifyLicense( &$pParamHash ) {
 		if( !empty( $pParamHash['license_new_title'] )) {
-			$pParamHash['license_store']['title'] = $pParamHash['license_new_title'];
+			$pParamHash['license_store']['title'] = substr( $pParamHash['license_new_title'], 0, 64 );
 		} else {
 			$this->mErrors['license_title'] = tra( 'You need to provede a title for the new license.' );
 		}
@@ -225,6 +284,7 @@ class Packager extends PackagerBase {
 		return( count( $this->mErrors ) == 0 );
 	}
 
+	/* ======================================= Documentation ======================================= */
 	/**
 	 * see if the documentation page exists, if not create it and return the appropriate content_id
 	 * 

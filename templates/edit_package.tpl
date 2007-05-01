@@ -24,14 +24,6 @@
 			</div>
 
 			<div class="row">
-				{formlabel label="Package Type" for="package_type"}
-				{forminput}
-					{html_options options=$packageTypes values=$packageTypes name=package_type selected=$editInfo.package_type}
-					{formhelp note="Pick the type that best describes this package."}
-				{/forminput}
-			</div>
-
-			<div class="row">
 				{formlabel label="Package description" for="description"}
 				{forminput}
 					<textarea rows="5" cols="50" name="description" id="description">{$editInfo.description|escape}</textarea>
@@ -40,17 +32,25 @@
 			</div>
 
 			<div class="row">
-				{formlabel label="License" for="license"}
+				{formlabel label="Package Type" for="type_id"}
 				{forminput}
-					{html_options options=$licenseTypes values=$licenseTypes name=license_id selected=$editInfo.license_id}{required}
-					{formhelp note="Please select the license that best fits your needs. If there is no such license, please enter one below."}
+					{html_options options=$packageTypes values=$packageTypes name=type_id id=type_id selected=$editInfo.type_id}{required}
+					{formhelp note="Please select the package type that best fits your needs. If there is no such type, please enter one below."}
+				{/forminput}
+			</div>
+
+			<div class="row">
+				{formlabel label="License" for="license_id"}
+				{forminput}
+					{html_options options=$licenseTypes values=$licenseTypes name=license_id id=license_id selected=$editInfo.license_id}{required}
+					{formhelp note='Please select the license that best fits your needs. If there is no such license, please enter one below. Need some <a href="http://creativecommons.org/license/">help finding the correct license</a>?'}
 				{/forminput}
 			</div>
 
 			<div class="row">
 				{formlabel label="Service" for="is_service"}
 				{forminput}
-					<input type="checkbox" name="is_service" id="is_service" {if $editInfo.is_service}checked="checked"{/if} />
+					<input type="checkbox" name="is_service" id="is_service" {if $editInfo.is_service == 'y'}checked="checked"{/if} />
 					{formhelp note="If your package is a service, please check this box."}
 				{/forminput}
 			</div>
@@ -59,13 +59,23 @@
 				<input type="submit" name="process_package" value="{tr}Store Package Details{/tr}" />
 			</div>
 
+			<h3>{tr}Enter new Package type if needed{/tr}</h3>
+			<p class="help">{tr}If there is no package type that fits your needs, please enter the details here.{/tr}</p>
+
+			<div class="row">
+				{formlabel label="Package Type" for="type_new_title"}
+				{forminput}
+					<input type="text" name="type_new_title" id="type_new_title" size="30" />
+				{/forminput}
+			</div>
+
 			<h3>{tr}Enter new License if needed{/tr}</h3>
 			<p class="help">{tr}If there is no license that fits your needs, please enter the details here.{/tr}</p>
 
 			<div class="row">
 				{formlabel label="License Title" for="license_new_title"}
 				{forminput}
-					<input type="text" name="license_new_title" id="license_new_title" size="10" />
+					<input type="text" name="license_new_title" id="license_new_title" size="30" />
 				{/forminput}
 			</div>
 

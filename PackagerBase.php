@@ -31,6 +31,7 @@ class PackagerBase extends BitBase {
 			'packager_packages',
 			'packager_versions',
 			'packager_licenses',
+			'packager_types',
 			'packager_changelogs',
 			'packager_dependencies',
 		);

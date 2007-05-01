@@ -17,7 +17,8 @@
 			<td>
 				<a href="{$package.display_url}">{$package.package|capitalize}</a>
 				<br />
-				<small>({$package.package_type|default:"{tr}Other{/tr}"})</small>
+				{assign var=type_id value=$package.type_id}
+				<small>({$gPackager->mTypes.$type_id.title})</small>
 			</td>
 			<td>
 				{assign var=license_id value=$package.license_id}

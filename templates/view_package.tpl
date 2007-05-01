@@ -25,7 +25,8 @@
 			<div class="row">
 				{formlabel label="Package Type"}
 				{forminput}
-					{$gPackager->mInfo.package_type|default:"{tr}Other{/tr}"}
+					{assign var=type_id value=$gPackager->mInfo.type_id}
+					{$gPackager->mTypes.$type_id.title}
 				{/forminput}
 			</div>
 

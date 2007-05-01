@@ -1,34 +1,15 @@
 <?php
+$packageTypes[] = 'Add new package type below';
+foreach( $gPackager->mTypes as $type ) {
+	$packageTypes[$type['type_id']] = $type['title'];
+}
+$gBitSmarty->assign( 'packageTypes', $packageTypes );
+
 $licenseTypes[] = 'Add new license below';
 foreach( $gPackager->mLicenses as $license ) {
 	$licenseTypes[$license['license_id']] = $license['title'];
 }
 $gBitSmarty->assign( 'licenseTypes', $licenseTypes );
-
-$packageTypes = array(
-	''                          => 'Other',
-	'Core Package'              => 'Core Package',
-	'Content in General'        => 'Content in General',
-	'Meta Data'                 => 'Meta Data',
-	'Categorisation or Tagging' => 'Categorisation or Tagging',
-	'Search'                    => 'Search',
-	'Navigation'                => 'Navigation',
-	'Ratings'                   => 'Ratings',
-	'Personalisation'           => 'Personalisation',
-	'Package Maintenance'       => 'Package Maintenance',
-	'News or Blogs'             => 'News or Blogs',
-	'Maps and Navigation'       => 'Maps and Navigation',
-	'Shop'                      => 'Shop',
-	'Forums'                    => 'Forums',
-	'Newsletters or Messaging'  => 'Newsletters or Messaging',
-	'Calendar or Events'        => 'Calendar or Events',
-	'Project Management'        => 'Project Management',
-	'File Management'           => 'File Management',
-	'Image Management'          => 'Image Management',
-	'Wiki'                      => 'Wiki',
-);
-ksort( $packageTypes );
-$gBitSmarty->assign( 'packageTypes', $packageTypes );
 
 $statuses = array(
 	''       => '',
