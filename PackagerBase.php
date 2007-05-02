@@ -36,7 +36,6 @@ class PackagerBase extends BitBase {
 			'packager_dependencies',
 		);
 
-		// this is used for testing and debugging. if i forget to remove this, please do so now - xing
 		$this->mHost = $gBitSystem->getConfig( 'packager_rem_host', 'www.bitweaver.org' );
 	}
 
