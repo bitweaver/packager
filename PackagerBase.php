@@ -202,7 +202,7 @@ class PackagerBase extends BitBase {
 				// make sure we only update when local files are older than a day
 				if(( !is_file( $xmlFile ) || is_file( $xmlFile ) && ( mktime() - filemtime( $xmlFile ) > 86400 ))) {
 					$xml = bit_http_request( $this->getXmlUrl( $table, TRUE ));
-					if( !preg_match( "/404 Not Found/", $xml )) {
+					if( !preg_match( "/404 Not Found/", $xml ) && !preg_match( "/DOCTYPE html PUBLIC/", $xml )) {
 						if( $handle = fopen( $xmlFile, 'w' )) {
 							fwrite( $handle, $xml );
 							fclose( $handle );
