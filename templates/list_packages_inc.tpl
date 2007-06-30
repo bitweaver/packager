@@ -55,5 +55,10 @@
 		<tr>
 			<td class="norecords" colspan="6">{tr}No Records found{/tr}</td>
 		</tr>
+		{if $gPackager->isServer() and $gBitUser->hasPermission('p_packager_edit_package')}
+			<tr>
+				<td class="norecords" colspan="6"><a href="{$smarty.const.PACKAGER_PKG_URL}edit_package.php">{tr}Create Package{/tr}</a></td>
+			</tr>
+		{/if}
 	{/foreach}
 </table>

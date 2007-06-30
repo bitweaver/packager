@@ -42,7 +42,7 @@
 					{formlabel label="Changelog" for="changelog"}
 					{forminput}
 						<textarea rows="10" cols="50" name="changelog" id="changelog">{$smarty.request.changelog|escape}</textarea>
-						{formhelp note="If you have a changelog copy it into the textbox. For the changelog format, please visit the online help."}
+						{formhelp note="If you have a changelog copy it into the textbox. Please use the following format:<br />+ New Feature<br />- Feature Removed<br />! Bug Fixed."}
 					{/forminput}
 				</div>
 
@@ -50,7 +50,7 @@
 					{formlabel label="Dependencies" for="dependencies"}
 					{forminput}
 						<textarea rows="5" cols="50" name="dependencies" id="dependencies">{$smarty.request.dependencies|escape}</textarea>
-						{formhelp note="Please enter any specific package dependencies here. Each dependency on a new line using the format: package min_version max_version"}
+						{formhelp note="Please enter any specific package dependencies here. Each dependency on a new line using the format:<br />package min_version max_version"}
 					{/forminput}
 				</div>
 
