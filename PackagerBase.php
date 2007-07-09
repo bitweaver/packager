@@ -364,17 +364,23 @@ class PackagerBase extends BitBase {
 	 * @return comparative result of version_compare()
 	 */
 	function versionCompare( $pOne, $pTwo ) {
-		if( !empty( $pOne ) && !empty( $pTwo )) {
-			if( is_string( $pOne ) && is_string( $pTwo )) {
-				return( version_compare( $pOne, $pTwo ));
-			} elseif( is_array( $pOne ) && is_string( $pTwo )) {
-				return( version_compare( $pOne['version'].$pOne['status'], $pTwo ));
-			} elseif( is_string( $pOne ) && is_array( $pTwo )) {
-				return( version_compare( $pOne, $pTwo['version'].$pTwo['status'] ));
-			} elseif( is_array( $pOne ) && is_array( $pTwo )) {
-				return( version_compare( $pOne['version'].$pOne['status'], $pTwo['version'].$pTwo['status'] ));
-			}
+		if( is_array( $pOne ) && !empty( $pOne['version'] ) && !isset( $pOne['status'] )) {
+			$pOne = $pOne['version'].$pOne['status'];
 		}
+
+		if( empty( $pOne )) {
+			$pOne = '0.0.0';
+		}
+
+		if( is_array( $pTwo ) && !empty( $pTwo['version'] ) && !isset( $pTwo['status'] )) {
+			$pTwo = $pTwo['version'].$pTwo['status'];
+		}
+
+		if( empty( $pTwo )) {
+			$pTwo = '0.0.0';
+		}
+
+		return( version_compare( $pOne, $pTwo ));
 	}
 
 

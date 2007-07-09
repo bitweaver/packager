@@ -40,6 +40,13 @@
 			<input type="submit" name="skip" value="Skip Database Update" />
 			<input type="submit" name="db_update" value="Update Database" />
 		</div>
+
+		<div class="row">
+			{forminput}
+				<label><input type="checkbox" name="debug" value="true" /> Debug mode</label>
+				{formhelp note="This will display SQL statements."}
+			{/forminput}
+		</div>
 	{else}
 		<div class="submit">
 			<input type="submit" name="skip" value="Skip Database Update" />

@@ -159,7 +159,7 @@ class PackagerInstall extends PackagerVersions {
 			if( $this->fetchRemotePackage() ) {
 				// shorthand
 				$installPath = $this->getInstallPath( $this->mInfo['package'] );
-				$backup      = $this->getStoragePath( 'backups' ).$this->mInfo['package'].'-'.mktime();
+				$backup      = $this->getStoragePath( 'backups' ).$this->mInfo['package'].'-'.$this->getVersionFromFile( $installPath.'admin/schema_inc.php' ).'-'.mktime();
 
 				if( $pIgnoreVersion || $this->versionCompare( $this->getVersionFromFile( $installPath.'admin/schema_inc.php' ), $this->mInfo ) === -1 ) {
 					// only continue if file is present and valid
@@ -173,7 +173,8 @@ class PackagerInstall extends PackagerVersions {
 						if( $ext = liberty_process_archive( $fileHash )) {
 							if( is_dir( $extracted = $ext.'/'.$this->mInfo['package'] )) {
 								if( is_dir( $installPath )) {
-									if( rename( $installPath, $backup )) {
+									// NOTE: this step is silenced - we display an error message if this has failed
+									if( @rename( $installPath, $backup )) {
 										if( !rename( $extracted, $installPath )) {
 											$this->mErrors['move'] = tra( 'There was a problem moving the extracted package to its new position.' );
 										}
@@ -195,7 +196,7 @@ class PackagerInstall extends PackagerVersions {
 						$this->mErrors['filecheck'] = tra( 'The file could not be located on your server.' );
 					}
 				} else {
-					$this->mErrors['version'] = tra( 'The version in your bitweaver root directory is either higher or equal to the version you wish to install. Only upgrades are possible.' );
+					$this->mErrors['version'] = tra( 'The version of <code>'.$installPath.'admin/schema_inc.php</code> is either higher or equal to the version you wish to install. Only upgrades are possible.' );
 				}
 			}
 

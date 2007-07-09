@@ -22,6 +22,7 @@ if( !empty( $_REQUEST['upgrade'] )) {
 
 	// cycle though packages that need upgrading
 	foreach( $upgradeList as $upgrade ) {
+		$updateVersion = TRUE;
 		// cycle through individual schema files and include them
 		foreach( $upgrade['schema_files'] as $schema ) {
 			$schemaUpgrades = $gInstall->getSchemaUpgrades( $schema );
@@ -31,12 +32,16 @@ if( !empty( $_REQUEST['upgrade'] )) {
 					$gBitSystem->mUpgrades[$upgrade['package']] = $up;
 					if( $err = $gBitInstaller->upgradePackage( $upgrade['package'] )) {
 						$failedcommands[$upgrade['packager_id']][] = $err;
+						$updateVersion = FALSE;
 					}
 				}
 			}
 		}
-		// update the installed version of this package in the database
-		$gInstall->updateVersion( $upgrade );
+
+		// only update the installed version of this package in the database if everything went well
+		if( $updateVersion ) {
+			$gInstall->updateVersion( $upgrade );
+		}
 	}
 
 	$gBitSmarty->assign( 'failedcommands', $failedcommands );

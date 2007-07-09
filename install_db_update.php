@@ -21,6 +21,10 @@ if( !empty( $_REQUEST['db_download'] )) {
 }
 
 if( !empty( $_REQUEST['db_update'] )) {
+	if( !empty( $_REQUEST['debug'] )) {
+		$gBitSystem->debug();
+	}
+
 	if( !$gInstall->packagerXmlToDb() ) {
 		$feedback['error'] = $gInstall->mErrors;
 	}
