@@ -21,5 +21,5 @@ $listHash['package'] = $gPackager->mPackage;
 $versionList = $gVersions->getList( $listHash );
 $gBitSmarty->assign( 'versionList', $versionList );
 $gBitSmarty->assign( 'feedback', $feedback );
-$gBitSystem->display( 'bitpackage:packager/view_package.tpl', tra( 'View Package Details' ));
+$gBitSystem->display( 'bitpackage:packager/view_package.tpl', tra( 'View Package Details' ), array( 'display_mode' => 'display' ));
 ?>

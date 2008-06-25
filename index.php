@@ -13,5 +13,5 @@ $packageList = $gPackager->getList( $listHash );
 $gBitSmarty->assign( 'packageList', $packageList );
 $gBitSmarty->assign( 'listInfo', $listHash['listInfo'] );
 $gBitSmarty->assign( 'gPackager', $gPackager );
-$gBitSystem->display( 'bitpackage:packager/list_packages.tpl', tra( 'Package List' ));
+$gBitSystem->display( 'bitpackage:packager/list_packages.tpl', tra( 'Package List' ), array( 'display_mode' => 'display' ));
 ?>

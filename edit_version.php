@@ -24,5 +24,5 @@ if( !empty( $_REQUEST['process_package'] )) {
 
 $gBitSmarty->assign( 'feedback', $feedback );
 $gBitSmarty->assign( 'editInfo', $gVersions->mInfo );
-$gBitSystem->display( 'bitpackage:packager/edit_version.tpl', tra( 'Edit Package' ));
+$gBitSystem->display( 'bitpackage:packager/edit_version.tpl', tra( 'Edit Package' ), array( 'display_mode' => 'edit' ));
 ?>

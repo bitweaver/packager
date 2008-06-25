@@ -32,5 +32,5 @@ if( !empty( $_REQUEST['process_package'] ) && !empty( $_FILES['package_upload'][
 }
 
 $gBitSmarty->assign( 'feedback', $feedback );
-$gBitSystem->display( 'bitpackage:packager/upload.tpl', tra( 'Upload Package' ));
+$gBitSystem->display( 'bitpackage:packager/upload.tpl', tra( 'Upload Package' ), array( 'display_mode' => 'display' ));
 ?>

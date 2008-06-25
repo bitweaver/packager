@@ -47,5 +47,5 @@ $gBitSmarty->assign( 'feedback', $feedback );
 if( empty( $_REQUEST['process_package'] )) {
 	$gBitSmarty->assign( 'editInfo', $gPackager->mInfo );
 }
-$gBitSystem->display( 'bitpackage:packager/edit_package.tpl', tra( 'Edit Package Details' ));
+$gBitSystem->display( 'bitpackage:packager/edit_package.tpl', tra( 'Edit Package Details' ), array( 'display_mode' => 'edit' ));
 ?>
