@@ -1,5 +1,5 @@
 <?php
-require_once( "../bit_setup_inc.php" );
+require_once( "../kernel/setup_inc.php" );
 require_once( PACKAGER_PKG_PATH."Packager.php" );
 require_once( PACKAGER_PKG_PATH."PackagerVersions.php" );
 require_once( PACKAGER_PKG_PATH."lookup_package.php" );

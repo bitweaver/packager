@@ -1,5 +1,5 @@
 <?php
-require_once( "../bit_setup_inc.php" );
+require_once( "../kernel/setup_inc.php" );
 $gBitSystem->verifyPackage( 'packager' );
 // we need to find a way to verify that the computer that is downloading is a bitweaver install
 //$gBitSystem->verifyPermission( 'p_packager_download_package' );
