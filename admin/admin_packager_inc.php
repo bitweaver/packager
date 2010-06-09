@@ -1,5 +1,5 @@
 <?php
-// $Header: /cvsroot/bitweaver/_bit_packager/admin/admin_packager_inc.php,v 1.1 2007/04/21 14:20:13 squareing Exp $
+// $Header$
 
 // any setting preceded by packager_rem_ will be copied to the client when they update.
 // we could copy settings like: pretty urls and the like to the client
