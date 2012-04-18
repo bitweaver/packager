@@ -40,7 +40,7 @@ class Packager extends PackagerBase {
 
 			if( $aux = $this->mDb->getRow( "SELECT pkgp.* FROM `".BIT_DB_PREFIX."packager_packages` pkgp $whereSql", $bindVars )) {
 				$this->mInfo = $aux;
-				$this->mInfo['display_url'] = $this->getDisplayUrl( $aux );
+				$this->mInfo['display_url'] = $this->getDisplayUrl();
 				$this->mInfo['documentation_url'] = $this->getDocumentionUrl( $aux['package'] );
 			}
 		}
@@ -164,7 +164,7 @@ class Packager extends PackagerBase {
 		$result = $this->mDb->query( $query, $bindVars );
 
 		while( $aux = $result->fetchRow() ) {
-			$aux['display_url']       = $this->getDisplayUrl( $aux );
+			$aux['display_url']       = $this->getDisplayUrlFromHash( $aux );
 			$aux['latest_version']    = $this->getLatestVersion( $aux['package'] );
 			$aux['installed_version'] = $this->getInstalledVersion( $aux['package'] );
 			$aux['is_cvs']            = ( $this->versionCompare( $aux['latest_version'], $aux['installed_version'] ) === -1 );
@@ -345,27 +345,38 @@ class Packager extends PackagerBase {
 	}
 
 	/**
-	 * getDisplayUrl 
+	 * Returns Request URL to a piece of content
+	 */
+	public function getDisplayUrl() {
+		$ret = NULL;
+		if( !empty( $this ) && $this->isValid() ) {
+			$ret = self::getDisplayUrlFromHash( array( 'package' => $this->mPackage ) );
+		}
+		return $ret;
+	}
+
+	/**
+	 * getDisplayUrlFromHash
 	 * 
 	 * @param array $pParamHash 
 	 * @access public
 	 * @return TRUE on success, FALSE on failure - mErrors will contain reason for failure
 	 */
-	function getDisplayUrl( $pMixed = NULL ) {
+	function getDisplayUrlFromHash( $pParamHash = NULL ) {
 		global $gBitSystem;
 
 		$ret = FALSE;
 
-		if( empty( $pMixed['package'] ) && $this->isValid() ) {
-			$pMixed['package'] = $this->mPackage;
+		if( empty( $pParamHash['package'] ) && $this->isValid() ) {
+			$pParamHash['package'] = $this->mPackage;
 		}
 
-		if( !empty( $pMixed['package'] )) {
+		if( !empty( $pParamHash['package'] )) {
 			if( $gBitSystem->isFeatureActive( 'pretty_urls' ) || $gBitSystem->isFeatureActive( 'pretty_urls_extended' ) ) {
 				$rewrite_tag = $gBitSystem->isFeatureActive( 'pretty_urls_extended' ) ? 'view/' : '';
-				$ret = PACKAGER_PKG_URL.$rewrite_tag."package/".urlencode( $pMixed['package'] );
+				$ret = PACKAGER_PKG_URL.$rewrite_tag."package/".urlencode( $pParamHash['package'] );
 			} else {
-				$ret = PACKAGER_PKG_URL.'view_package.php?package='.urlencode( $pMixed['package'] );
+				$ret = PACKAGER_PKG_URL.'view_package.php?package='.urlencode( $pParamHash['package'] );
 			}
 		}
 		return $ret;

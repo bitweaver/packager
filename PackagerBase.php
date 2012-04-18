@@ -234,7 +234,7 @@ class PackagerBase extends BitBase {
 			require_once( PACKAGER_PKG_PATH."PackagerVersions.php" );
 			$query = "SELECT * FROM `".BIT_DB_PREFIX."packager_versions` WHERE `package`=? ORDER BY ".$this->mDb->convertSortmode( 'release_date_desc' );
 			if( $ret = $this->mDb->getRow( $query, array( $pPackage ))) {
-				$ret['display_url'] = PackagerVersions::getDisplayUrl( $ret );
+				$ret['display_url'] = PackagerVersions::getDisplayUrlFromHash( $ret );
 				$ret['package_url'] = PackagerVersions::getPackageUrl( $ret );
 			}
 			return $ret;

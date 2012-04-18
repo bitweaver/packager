@@ -47,8 +47,8 @@ class PackagerVersions extends PackagerBase {
 				$this->mInfo['mime_type']           = 'application/zip';
 				$this->mInfo['last_modified']       = $this->mInfo['release_date'];
 				$this->mInfo['source_file']         = $this->getPackageFilepath( $this->mInfo );
-				$this->mInfo['package_display_url'] = Packager::getDisplayUrl( $aux );
-				$this->mInfo['display_url']         = $this->getDisplayUrl( $aux );
+				$this->mInfo['package_display_url'] = Packager::getDisplayUrlFromHash( $aux );
+				$this->mInfo['display_url']         = $this->getDisplayUrlFromHash( $aux );
 				$this->mInfo['package_url']         = $this->getPackageUrl( $aux );
 				$this->mInfo['changelog']           = $this->getChangelog();
 				$this->mInfo['dependencies']        = $this->getDependencies();
@@ -276,7 +276,7 @@ class PackagerVersions extends PackagerBase {
 		$result = $this->mDb->query( $query, $bindVars );
 
 		while( $aux = $result->fetchRow() ) {
-			$aux['display_url']       = $this->getDisplayUrl( $aux );
+			$aux['display_url']       = $this->getDisplayUrlFromHash( $aux );
 			$aux['package_url']       = $this->getPackageUrl( $aux );
 			$ret[$aux['packager_id']] = $aux;
 		}
@@ -289,25 +289,21 @@ class PackagerVersions extends PackagerBase {
 	/**
 	 * getDisplayUrl 
 	 * 
-	 * @param array $pMixed 
+	 * @param array $pParamHash 
 	 * @access public
 	 * @return TRUE on success, FALSE on failure - mErrors will contain reason for failure
 	 */
-	function getDisplayUrl( $pMixed = NULL ) {
+	function getDisplayUrlFromHash( $pParamHash = NULL ) {
 		global $gBitSystem;
 
 		$ret = FALSE;
 
-		if( empty( $pMixed['packager_id'] ) && $this->isValid() ) {
-			$pMixed['packager_id'] = $this->mPackagerId;
-		}
-
-		if( !empty( $pMixed['packager_id'] )) {
+		if( !empty( $pParamHash['packager_id'] )) {
 			if( $gBitSystem->isFeatureActive( 'pretty_urls' ) || $gBitSystem->isFeatureActive( 'pretty_urls_extended' ) ) {
 				$rewrite_tag = $gBitSystem->isFeatureActive( 'pretty_urls_extended' ) ? 'view/' : '';
-				$ret = PACKAGER_PKG_URL.$rewrite_tag."version/".$pMixed['packager_id'];
+				$ret = PACKAGER_PKG_URL.$rewrite_tag."version/".$pParamHash['packager_id'];
 			} else {
-				$ret = PACKAGER_PKG_URL.'view_version.php?packager_id='.$pMixed['packager_id'];
+				$ret = PACKAGER_PKG_URL.'view_version.php?packager_id='.$pParamHash['packager_id'];
 			}
 		}
 		return $ret;
