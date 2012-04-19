@@ -50,7 +50,7 @@ $tables = array (
 		min_version C(64),
 		max_version C(64)
 		CONSTRAINT '
-			, CONSTRAINT `packager_packager_id_ref` FOREIGN KEY ( `packager_id` ) REFERENCES `".BIT_DB_PREFIX."packager_versions`( `packager_id` )'
+			, CONSTRAINT `packager_dependencies_packager_id_ref` FOREIGN KEY ( `packager_id` ) REFERENCES `".BIT_DB_PREFIX."packager_versions`( `packager_id` )'
 	",
 
 	'packager_installed' => "
@@ -60,7 +60,7 @@ $tables = array (
 		install_date I8,
 		install_message X
 		CONSTRAINT '
-			, CONSTRAINT `packager_packager_id_ref` FOREIGN KEY ( `packager_id` ) REFERENCES `".BIT_DB_PREFIX."packager_versions`( `packager_id` )'
+			, CONSTRAINT `packager_installed_packager_id_ref` FOREIGN KEY ( `packager_id` ) REFERENCES `".BIT_DB_PREFIX."packager_versions`( `packager_id` )'
 	",
 );
 
