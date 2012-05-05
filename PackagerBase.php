@@ -24,7 +24,7 @@ class PackagerBase extends BitBase {
 	function PackagerBase() {
 		global $gBitSystem;
 
-		BitBase::BitBase();
+		parent::__construct();
 
 		// table order is important due to constraints
 		$this->mTables = array(
