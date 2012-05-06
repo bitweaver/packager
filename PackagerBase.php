@@ -21,7 +21,7 @@ class PackagerBase extends BitBase {
 	 *
 	 * @return void
 	 */
-	function PackagerBase() {
+	function __construct() {
 		global $gBitSystem;
 
 		parent::__construct();
