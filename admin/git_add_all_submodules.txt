@@ -1,0 +1,133 @@
+git submodule add git@github.com:bitweaver/address.git
+git submodule add git@github.com:bitweaver/articles.git
+git submodule add git@github.com:bitweaver/badbehavior.git
+git submodule add git@github.com:bitweaver/bitcart.git
+git submodule add git@github.com:bitweaver/blogs.git
+git submodule add git@github.com:bitweaver/bnspell.git
+git submodule add git@github.com:bitweaver/boards.git
+git submodule add git@github.com:bitweaver/calendar.git
+git submodule add git@github.com:bitweaver/cascader.git
+git submodule add git@github.com:bitweaver/categories.git
+git submodule add git@github.com:bitweaver/chatterbox.git
+git submodule add git@github.com:bitweaver/citizen.git
+git submodule add git@github.com:bitweaver/ckeditor.git
+git submodule add git@github.com:bitweaver/commerce.git
+git submodule add git@github.com:bitweaver/contacts.git
+git submodule add git@github.com:bitweaver/cryptifier.git
+git submodule add git@github.com:bitweaver/debug.git
+git submodule add git@github.com:bitweaver/doc.git
+git submodule add git@github.com:bitweaver/energymeasures.git
+git submodule add git@github.com:bitweaver/events.git
+git submodule add git@github.com:bitweaver/fckeditor.git
+git submodule add git@github.com:bitweaver/feed.git
+git submodule add git@github.com:bitweaver/filevault.git
+git submodule add git@github.com:bitweaver/fisheye.git
+git submodule add git@github.com:bitweaver/forums.git
+git submodule add git@github.com:bitweaver/galaxia.git
+git submodule add git@github.com:bitweaver/gallery2.git
+git submodule add git@github.com:bitweaver/games.git
+git submodule add git@github.com:bitweaver/gatekeeper.git
+git submodule add git@github.com:bitweaver/geo.git
+git submodule add git@github.com:bitweaver/geshi.git
+git submodule add git@github.com:bitweaver/gigaupload.git
+git submodule add git@github.com:bitweaver/gmap.git
+git submodule add git@github.com:bitweaver/groups.git
+git submodule add git@github.com:bitweaver/hotwords.git
+git submodule add git@github.com:bitweaver/hype.git
+git submodule add git@github.com:bitweaver/ilike.git
+git submodule add git@github.com:bitweaver/kernel.git
+git submodule add git@github.com:bitweaver/libertyform.git
+git submodule add git@github.com:bitweaver/liberty.git
+git submodule add git@github.com:bitweaver/libertysecure.git
+git submodule add git@github.com:bitweaver/lucene.git
+git submodule add git@github.com:bitweaver/mapper.git
+git submodule add git@github.com:bitweaver/messages.git
+git submodule add git@github.com:bitweaver/meta.git
+git submodule add git@github.com:bitweaver/modcomments.git
+git submodule add git@github.com:bitweaver/moderation.git
+git submodule add git@github.com:bitweaver/multisites.git
+git submodule add git@github.com:bitweaver/newsletters.git
+git submodule add git@github.com:bitweaver/nexus.git
+git submodule add git@github.com:bitweaver/nlpg.git
+git submodule add git@github.com:bitweaver/packager.git
+git submodule add git@github.com:bitweaver/pdf.git
+git submodule add git@github.com:bitweaver/person.git
+git submodule add git@github.com:bitweaver/phpbb.git
+git submodule add git@github.com:bitweaver/phpgedview.git
+git submodule add git@github.com:bitweaver/pigeonholes.git
+git submodule add git@github.com:bitweaver/polls.git
+git submodule add git@github.com:bitweaver/protector.git
+git submodule add git@github.com:bitweaver/quicktags.git
+git submodule add git@github.com:bitweaver/quota.git
+git submodule add git@github.com:bitweaver/reblog.git
+git submodule add git@github.com:bitweaver/recommends.git
+git submodule add git@github.com:bitweaver/root.git
+git submodule add git@github.com:bitweaver/rss.git
+git submodule add git@github.com:bitweaver/samplecorp.git
+git submodule add git@github.com:bitweaver/sample.git
+git submodule add git@github.com:bitweaver/search.git
+git submodule add git@github.com:bitweaver/semaphore.git
+git submodule add git@github.com:bitweaver/sharethis.git
+git submodule add git@github.com:bitweaver/sheets.git
+git submodule add git@github.com:bitweaver/shoutbox.git
+git submodule add git@github.com:bitweaver/sitehome.git
+git submodule add git@github.com:bitweaver/smileys.git
+git submodule add git@github.com:bitweaver/spamurai.git
+git submodule add git@github.com:bitweaver/sphinx.git
+git submodule add git@github.com:bitweaver/stars.git
+git submodule add git@github.com:bitweaver/stats.git
+git submodule add git@github.com:bitweaver/stencils.git
+git submodule add git@github.com:bitweaver/stickies.git
+git submodule add git@github.com:bitweaver/storage.git
+git submodule add git@github.com:bitweaver/styles.git
+git submodule add git@github.com:bitweaver/suggestion.git
+git submodule add git@github.com:bitweaver/superstars.git
+git submodule add git@github.com:bitweaver/switchboard.git
+git submodule add git@github.com:bitweaver/tags.git
+git submodule add git@github.com:bitweaver/tasks.git
+git submodule add git@github.com:bitweaver/temp.git
+git submodule add git@github.com:bitweaver/themes.git
+git submodule add git@github.com:bitweaver/themes_babyblue.git config/themes/babyblue
+git submodule add git@github.com:bitweaver/themes_basic.git config/themes/basic
+git submodule add git@github.com:bitweaver/themes_cascader.git config/themes/cascader
+git submodule add git@github.com:bitweaver/themes_chemokine.git config/themes/chemokine
+git submodule add git@github.com:bitweaver/themes_clean.git config/themes/clean
+git submodule add git@github.com:bitweaver/themes_eclipse.git config/themes/eclipse
+git submodule add git@github.com:bitweaver/themes_essential.git config/themes/essential
+git submodule add git@github.com:bitweaver/themes_fiftypercent.git config/themes/fiftypercent
+git submodule add git@github.com:bitweaver/themes_firebird.git config/themes/firebird
+git submodule add git@github.com:bitweaver/themes_interleukin.git config/themes/interleukin
+git submodule add git@github.com:bitweaver/themes_jill.git config/themes/jill
+git submodule add git@github.com:bitweaver/themes_july4.git config/themes/july4
+git submodule add git@github.com:bitweaver/themes_kraphiti.git config/themes/kraphiti
+git submodule add git@github.com:bitweaver/themes_lessneat.git config/themes/lessneat
+git submodule add git@github.com:bitweaver/themes_logo03.git config/themes/logo03
+git submodule add git@github.com:bitweaver/themes_lynx.git config/themes/lynx
+git submodule add git@github.com:bitweaver/themes_mambo.git config/themes/mambo
+git submodule add git@github.com:bitweaver/themes_native2.git config/themes/native2
+git submodule add git@github.com:bitweaver/themes_native.git config/themes/native
+git submodule add git@github.com:bitweaver/themes_navigo.git config/themes/navigo
+git submodule add git@github.com:bitweaver/themes_olfactory.git config/themes/olfactory
+git submodule add git@github.com:bitweaver/themes_pompous.git config/themes/pompous
+git submodule add git@github.com:bitweaver/themes_skeleton.git config/themes/skeleton
+git submodule add git@github.com:bitweaver/themes_slideshows.git config/themes/slideshows
+git submodule add git@github.com:bitweaver/themes_smock.git config/themes/smock
+git submodule add git@github.com:bitweaver/themes_studebaker.git config/themes/studebaker
+git submodule add git@github.com:bitweaver/themes_tikipro.git config/themes/tikipro
+git submodule add git@github.com:bitweaver/themes_ygg.git config/themes/ygg
+git submodule add git@github.com:bitweaver/iconset_gnome.git config/iconsets/gnome
+git submodule add git@github.com:bitweaver/iconset_gorilla.git config/iconsets/gorilla
+git submodule add git@github.com:bitweaver/iconset_highcontrast.git config/iconsets/highcontrast
+git submodule add git@github.com:bitweaver/iconset_tango.git config/iconsets/tango
+git submodule add git@github.com:bitweaver/tickets.git
+git submodule add git@github.com:bitweaver/tidbits.git
+git submodule add git@github.com:bitweaver/tinymce.git
+git submodule add git@github.com:bitweaver/treasury.git
+git submodule add git@github.com:bitweaver/unit.git
+git submodule add git@github.com:bitweaver/upstall.git
+git submodule add git@github.com:bitweaver/users.git
+git submodule add git@github.com:bitweaver/util.git
+git submodule add git@github.com:bitweaver/warehouse.git
+git submodule add git@github.com:bitweaver/wiki.git
+git submodule add git@github.com:bitweaver/adodb.git util/adodb
+git submodule add git@github.com:bitweaver/smarty.git util/smarty
