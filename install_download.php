@@ -4,11 +4,11 @@ $progressReport = array();
 
 // redirect if something is wrong
 if( empty( $_REQUEST['upgrades'] )) {
-	header( "Location: ".$_SERVER['PHP_SELF']."?noselection=1&step=".--$step );
+	header( "Location: ".$_SERVER['SCRIPT_NAME']."?noselection=1&step=".--$step );
 	die;
 } elseif( !empty( $_REQUEST['continue'] )) {
 	// we transfer manually since the user can decide when he wants to move on and we're storing the upgrade list in the session
-	header( "Location: ".$_SERVER['PHP_SELF']."?step=".++$step );
+	header( "Location: ".$_SERVER['SCRIPT_NAME']."?step=".++$step );
 	die;
 }
 

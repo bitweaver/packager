@@ -1,7 +1,7 @@
 <?php
 // redirect if something is wrong
 if( empty( $_SESSION['upgrades'] )) {
-	header( "Location: ".$_SERVER['PHP_SELF']."?noselection=1&step=".--$step );
+	header( "Location: ".$_SERVER['SCRIPT_NAME']."?noselection=1&step=".--$step );
 	die;
 }
 $_REQUEST['upgrades'] = $_SESSION['upgrades'];
