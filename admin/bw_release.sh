@@ -1,6 +1,5 @@
 if [ -z $1 ]; then
-	echo usage $0 dirname
-	exit
+	$1 = "bitweaver"
 fi
 
 git clone git@github.com:bitweaver/bitweaver.git -b RELEASE $1
