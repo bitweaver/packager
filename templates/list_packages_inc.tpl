@@ -24,21 +24,21 @@
 				{assign var=license_id value=$package.license_id}
 				<a href="{$gPackager->mLicenses.$license_id.license_url}">{$gPackager->mLicenses.$license_id.title}</a>
 			</td>
-			<td>{if $package.is_service == 'y'}{biticon ipackage=icons iname=dialog-ok iexplain="Service"}{/if}</td>
+			<td>{if $package.is_service == 'y'}{booticon iname="icon-ok"  ipackage=icons  iexplain="Service"}{/if}</td>
 			{if !$gPackager->isServer()}
 				<td>{$package.installed_version.version} {$package.installed_version.status}</td>
 			{/if}
 			<td>
 				{if $package.latest_version.packager_id}
 					<a href="{$package.latest_version.display_url}">{$package.latest_version.version} {$package.latest_version.status}</a>
-					{if $package.latest_version.is_security_release == 'y'}{biticon iname=dialog-warning iexplain="Security Release"}{/if}<br />
+					{if $package.latest_version.is_security_release == 'y'}{booticon iname="icon-warning-sign"   iexplain="Security Release"}{/if}<br />
 					<small>{$package.latest_version.release_date|bit_short_date}</small>
 				{/if}
 			</td>
 			{if $smarty.const.BIT_INSTALL|defined}
 				<td class="actionicon">
 					{if $package.is_uptodate}
-						{biticon ipackage=icons iname=dialog-ok iexplain="Installed"}
+						{booticon iname="icon-ok"  ipackage=icons  iexplain="Installed"}
 					{elseif $package.is_upgradable}
 						<input type="checkbox" name="upgrades[]" value="{$package.latest_version.packager_id}" />
 					{elseif $package.latest_version.packager_id}

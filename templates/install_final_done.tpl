@@ -2,7 +2,7 @@
 
 {form action="`$smarty.const.BIT_ROOT_URL`index.php" legend="Upgrade has been completed sucessfully"}
 	<p class="success">
-		{biticon ipackage="icons" iname="dialog-ok" iexplain=success}
+		{booticon iname="icon-ok"  ipackage="icons"  iexplain=success}
 		Your system is ready for use now.
 	</p>
 

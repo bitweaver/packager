@@ -23,7 +23,7 @@
 			{foreach from=$xmlFiles key=table item=file}
 				<li>
 					{if $xmlFiles.$table}
-						{biticon iname=dialog-ok iexplain=OK} <a href="{$gInstall->getXmlUrl($table)}">{$table}.xml</a>
+						{booticon iname="icon-ok"   iexplain=OK} <a href="{$gInstall->getXmlUrl($table)}">{$table}.xml</a>
 						{assign var=ok value=1}
 					{else}
 						{biticon iname=dialog-error iexplain=Missing} {$table}.xml

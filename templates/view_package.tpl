@@ -56,7 +56,7 @@
 				<div class="control-group">
 					{formlabel label="Service"}
 					{forminput}
-						{biticon ipackage=icons iname=dialog-ok iexplain="Is Service"}
+						{booticon iname="icon-ok"  ipackage=icons  iexplain="Is Service"}
 					{/forminput}
 				</div>
 			{/if}
@@ -80,13 +80,13 @@
 					</tr>
 					{foreach from=$versionList item=version}
 						<tr class="{cycle values="odd,even"}">
-							<td>{if $version.is_security_release == 'y'}{biticon ipackage="icons" iname="dialog-warning" iexplain="Security Release"}{/if}</td>
-							{*<td>{if !$gPackager->isServer() && $version.is_downloaded}{biticon ipackage=icons iname=dialog-ok iexplain="On Server"}{/if}</td>*}
+							<td>{if $version.is_security_release == 'y'}{booticon iname="icon-warning-sign"  ipackage="icons"  iexplain="Security Release"}{/if}</td>
+							{*<td>{if !$gPackager->isServer() && $version.is_downloaded}{booticon iname="icon-ok"  ipackage=icons  iexplain="On Server"}{/if}</td>*}
 							<td>{$version.release_date|bit_short_date}</td>
 							<td><a href="{$version.display_url}">{$version.version} <em>{$version.status}</em></a></td>
 							<td style="text-align:right">{$version.file_size|display_bytes}</td>
 							<td class="actionicon">
-								<a href="{$version.package_url}">{biticon iname="go-down" ipackage="icons" iexplain="Download"}</a>
+								<a href="{$version.package_url}">{booticon iname="icon-cloud-download"   ipackage="icons" iexplain="Download"}</a>
 								{if $gPackager->isOwner()}
 									{smartlink ititle="Edit Version" ifile="edit_version.php" packager_id=$version.packager_id booticon="icon-edit"}
 								{/if}

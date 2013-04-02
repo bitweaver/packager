@@ -25,7 +25,7 @@
 			<div class="control-group">
 				{formlabel label="Security Release"}
 				{forminput}
-					{biticon ipackage=icons iname=dialog-warning iexplain="Security Release"}
+					{booticon iname="icon-warning-sign"  ipackage=icons  iexplain="Security Release"}
 				{/forminput}
 			</div>
 		{/if}
@@ -45,20 +45,20 @@
 			<div class="control-group">
 				{formlabel label="Changelog"}
 				{forminput}
-					{biticon ipackage=icons iname="list-add" iexplain="Feature added" iforce=icon_text}
+					{booticon iname="icon-plus-sign"  ipackage=icons  iexplain="Feature added" iforce=icon_text}
 					&nbsp; &nbsp; &nbsp; &nbsp;
 					{biticon ipackage=icons iname="emblem-important" iexplain="Bug Squished" iforce=icon_text}
 					&nbsp; &nbsp; &nbsp; &nbsp;
-					{biticon ipackage=icons iname="list-remove" iexplain="Feature removed" iforce=icon_text}
+					{booticon iname="icon-minus-sign"  ipackage=icons  iexplain="Feature removed" iforce=icon_text}
 					<ul class="data">
 						{foreach from=$gVersions->mInfo.changelog item=log}
 							<li class="item">
 								{if $log.flag == "!"}
 									{biticon ipackage=icons iname="emblem-important" iexplain="Bug Squished"}
 								{elseif $log.flag == "+"}
-									{biticon ipackage=icons iname="list-add" iexplain="Feature added"}
+									{booticon iname="icon-plus-sign"  ipackage=icons  iexplain="Feature added"}
 								{elseif $log.flag == "-"}
-									{biticon ipackage=icons iname="list-remove" iexplain="Feature removed"}
+									{booticon iname="icon-minus-sign"  ipackage=icons  iexplain="Feature removed"}
 								{/if}
 
 								&nbsp; <code>{$log.log_date|bit_date_format:"%Y-%m-%d"}</code> &nbsp; &bull; &nbsp; {$log.change_log|escape}
