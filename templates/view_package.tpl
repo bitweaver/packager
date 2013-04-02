@@ -2,8 +2,8 @@
 <div class="display packager">
 	{if $gPackager->isOwner()}
 		<div class="floaticon">
-			{smartlink ititle="Edit Package Details" ifile="edit_package.php" ibiticon="icons/accessories-text-editor" package=$gPackager->mInfo.package}
-			{smartlink ititle="Remove Package" ifile="edit_package.php" ibiticon="icons/edit-delete" remove=$gPackager->mInfo.package}
+			{smartlink ititle="Edit Package Details" ifile="edit_package.php" booticon="icon-edit" package=$gPackager->mInfo.package}
+			{smartlink ititle="Remove Package" ifile="edit_package.php" booticon="icon-trash" remove=$gPackager->mInfo.package}
 		</div>
 	{/if}
 
@@ -88,7 +88,7 @@
 							<td class="actionicon">
 								<a href="{$version.package_url}">{biticon iname="go-down" ipackage="icons" iexplain="Download"}</a>
 								{if $gPackager->isOwner()}
-									{smartlink ititle="Edit Version" ifile="edit_version.php" packager_id=$version.packager_id ibiticon="icons/accessories-text-editor"}
+									{smartlink ititle="Edit Version" ifile="edit_version.php" packager_id=$version.packager_id booticon="icon-edit"}
 								{/if}
 							</td>
 						</tr>
