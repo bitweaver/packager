@@ -8,7 +8,7 @@
 		</p>
 
 		{foreach from=$packagerSettings key=feature item=output}
-			<div class="row">
+			<div class="control-group">
 				{formlabel label=`$output.label` for=$feature}
 				{forminput}
 					{if $output.type == 'checkbox'}
@@ -31,7 +31,7 @@
 		{/foreach}
 	{/legend}
 
-	<div class="row submit">
+	<div class="control-group submit">
 		<input type="submit" name="packager_settings" value="{tr}Change preferences{/tr}" />
 	</div>
 {/form}

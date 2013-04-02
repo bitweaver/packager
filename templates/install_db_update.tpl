@@ -41,7 +41,7 @@
 			<input type="submit" name="db_update" value="Update Database" />
 		</div>
 
-		<div class="row">
+		<div class="control-group">
 			{forminput}
 				<label><input type="checkbox" name="debug" value="true" /> Debug mode</label>
 				{formhelp note="This will display SQL statements."}

@@ -12,7 +12,7 @@
 		will advance as development on it continues.
 	</p>
 
-	<div class="row submit">
+	<div class="control-group submit">
 		<input type="submit" size="20" value="Enter Your bitweaver Site" />
 	</div>
 {/form}

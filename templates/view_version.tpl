@@ -7,14 +7,14 @@
 	<div class="body">
 		{formfeedback hash=$feedback}
 
-		<div class="row">
+		<div class="control-group">
 			{formlabel label="Package"}
 			{forminput}
 				<a href="{$gVersions->mInfo.package_display_url}">{$gVersions->mInfo.package}</a>
 			{/forminput}
 		</div>
 
-		<div class="row">
+		<div class="control-group">
 			{formlabel label="Version"}
 			{forminput}
 				{$gVersions->mInfo.version}
@@ -22,7 +22,7 @@
 		</div>
 
 		{if $gVersions->mInfo.is_security_release == 'y'}
-			<div class="row">
+			<div class="control-group">
 				{formlabel label="Security Release"}
 				{forminput}
 					{biticon ipackage=icons iname=dialog-warning iexplain="Security Release"}
@@ -30,7 +30,7 @@
 			</div>
 		{/if}
 
-		<div class="row">
+		<div class="control-group">
 			{formlabel label="Actions"}
 			{forminput}
 				<a href="{$gVersions->mInfo.package_url}">{biticon iname=large/go-down ipackage=icons iexplain="Download"}</a>
@@ -42,7 +42,7 @@
 		</div>
 
 		{if $gVersions->mInfo.changelog}
-			<div class="row">
+			<div class="control-group">
 				{formlabel label="Changelog"}
 				{forminput}
 					{biticon ipackage=icons iname="list-add" iexplain="Feature added" iforce=icon_text}
@@ -70,7 +70,7 @@
 		{/if}
 
 		{if $gVersions->mInfo.dependencies}
-			<div class="row">
+			<div class="control-group">
 				{formlabel label="Dependencies"}
 				{forminput}
 					{* we really need some sort of nested dependency tree here *}

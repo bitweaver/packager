@@ -49,7 +49,7 @@
 	{/if}
 
 	{if $errors}
-		<div class="row">
+		<div class="control-group">
 			{formlabel label="Ignore local versions" for="ignore_versions"}
 			{forminput}
 				<input type="checkbox" name="ignore_versions" id="ignore_versions" />

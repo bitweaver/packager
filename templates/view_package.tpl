@@ -15,14 +15,14 @@
 		{formfeedback hash=$feedback}
 
 		{if $gPackager->mInfo}
-			<div class="row">
+			<div class="control-group">
 				{formlabel label="Package"}
 				{forminput}
 					{$gPackager->mInfo.package|escape}
 				{/forminput}
 			</div>
 
-			<div class="row">
+			<div class="control-group">
 				{formlabel label="Package Type"}
 				{forminput}
 					{assign var=type_id value=$gPackager->mInfo.type_id}
@@ -30,21 +30,21 @@
 				{/forminput}
 			</div>
 
-			<div class="row">
+			<div class="control-group">
 				{formlabel label="Package description"}
 				{forminput}
 					{$gPackager->mInfo.description|escape}
 				{/forminput}
 			</div>
 
-			<div class="row">
+			<div class="control-group">
 				{formlabel label="Online Documentation"}
 				{forminput}
 					<a {if !$gPackager->isServer()}class="external"{/if} href="{$gPackager->mInfo.documentation_url}">{$gPackager->mPackage|capitalize}Package</a>
 				{/forminput}
 			</div>
 
-			<div class="row">
+			<div class="control-group">
 				{formlabel label="License"}
 				{forminput}
 					{assign var=license_id value=$gPackager->mInfo.license_id}
@@ -53,7 +53,7 @@
 			</div>
 
 			{if $gPackager->mInfo.is_service == 'y'}
-				<div class="row">
+				<div class="control-group">
 					{formlabel label="Service"}
 					{forminput}
 						{biticon ipackage=icons iname=dialog-ok iexplain="Is Service"}
