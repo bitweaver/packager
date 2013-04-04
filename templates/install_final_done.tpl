@@ -13,6 +13,6 @@
 	</p>
 
 	<div class="control-group submit">
-		<input type="submit" size="20" value="Enter Your bitweaver Site" />
+		<input type="submit" class="btn" size="20" value="Enter Your bitweaver Site" />
 	</div>
 {/form}

@@ -53,7 +53,7 @@
 			</div>
 
 			<div class="submit">
-				<input type="submit" name="process_package" value="{tr}Apply Changes{/tr}" />
+				<input type="submit" class="btn" name="process_package" value="{tr}Apply Changes{/tr}" />
 			</div>
 		{/form}
 	</div><!-- end .body -->

@@ -17,7 +17,7 @@
 	{include file=bitpackage:packager/list_packages_inc.tpl}
 
 	<div class="submit">
-		<input type="submit" name="selection" value="Submit Selection" />
+		<input type="submit" class="btn" name="selection" value="Submit Selection" />
 	</div>
 {/form}
 {/strip}

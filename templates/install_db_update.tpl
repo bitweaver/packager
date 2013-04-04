@@ -37,8 +37,8 @@
 		{/if}
 
 		<div class="submit">
-			<input type="submit" name="skip" value="Skip Database Update" />
-			<input type="submit" name="db_update" value="Update Database" />
+			<input type="submit" class="btn" name="skip" value="Skip Database Update" />
+			<input type="submit" class="btn" name="db_update" value="Update Database" />
 		</div>
 
 		<div class="control-group">
@@ -49,8 +49,8 @@
 		</div>
 	{else}
 		<div class="submit">
-			<input type="submit" name="skip" value="Skip Database Update" />
-			<input type="submit" name="db_download" value="Download Database" />
+			<input type="submit" class="btn" name="skip" value="Skip Database Update" />
+			<input type="submit" class="btn" name="db_download" value="Download Database" />
 		</div>
 	{/if}
 {/form}

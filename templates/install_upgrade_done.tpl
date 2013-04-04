@@ -15,6 +15,6 @@
 	{/foreach}
 
 	<div class="submit">
-		<input type="submit" name="verify" value="Verify Install" />
+		<input type="submit" class="btn" name="verify" value="Verify Install" />
 	</div>
 {/form}

@@ -9,6 +9,6 @@
 	{formfeedback hash=$feedback}
 
 	<div class="submit">
-		<input type="submit" name="continue" value="Continue to Package Selection" />
+		<input type="submit" class="btn" name="continue" value="Continue to Package Selection" />
 	</div>
 {/form}

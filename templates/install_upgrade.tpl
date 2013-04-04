@@ -30,7 +30,7 @@
 	</ul>
 
 	<div class="submit">
-		<input type="submit" name="upgrade" value="Perform Upgrade" />
+		<input type="submit" class="btn" name="upgrade" value="Perform Upgrade" />
 	</div>
 
 	<div class="control-group">
