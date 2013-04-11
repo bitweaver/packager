@@ -78,24 +78,25 @@ $iconMap = array(
 
 foreach( $iconMap AS $biticon=>$booticon ) {
 	print "$PATH $biticon => $booticon\n";
-	`find $PATH -name "*.tpl" -exec perl -i -wpe 's/{biticon\b([^}]*?)iname="?\b$biticon"?\s/{booticon iname="$booticon" $1 /g' {} \;`;
-	`find $PATH -name "*.tpl" -exec perl -i -wpe 's#{smartlink\b([^}]*?)ibiticon="[^/]*/$biticon"#{smartlink$1booticon="$booticon"#g' {} \;`;
+//	`find $PATH -name "*.tpl" -exec perl -i -wpe 's/{biticon\b([^}]*?)iname="?\b$biticon"?\s/{booticon iname="$booticon" $1 /g' {} \;`;
+//	`find $PATH -name "*.tpl" -exec perl -i -wpe 's#{smartlink\b([^}]*?)ibiticon="[^/]*/$biticon"#{smartlink$1booticon="$booticon"#g' {} \;`;
 }
 
 // CSS changes
-//find */templates/* -exec perl -i -wpe 's/class="row"/class="control-group"
-//find */templates/* -exec perl -i -wpe 's/class="row"/class="control-group"
-//find . -exec perl -i -wpe 's/p class="success"/p class="alert alert-success"
-//find *.*p* -exec perl -i -wpe 's/p class="success"/p class="alert alert-success"
-//find templates/* -exec perl -i -wpe 's/{form /{form class="inline-form" /' {} \;
-//find templates/* -exec perl -i -wpe 's/{form class="inline-form" /{form class="form-inline" /' {} \;
-//find templates/* -exec perl -i -wpe 's/{form class="form-inline" /{form class="form-horizontal" /' {} \;
-//find */templates/* -exec perl -i -wpe 's/class="row submit/class="control-group submit
-//find *tpl -exec perl -i -wpe 's/input type="submit"/input type="submit" class="btn"
-//find *.*p* -exec perl -i -wpe 's/p class="warning"/p class="alert alert-warning"
-//find -name *.*p* -exec perl -i -wpe 's/p class="warning"/p class="alert alert-warning"
-//find . -name *.*p* -exec perl -i -wpe 's/p class="warning"/p class="alert alert-warning"
-//find . -name "*.*p*" -exec perl -i -wpe 's/p class="warning"/p class="alert alert-warning"
-//find . -name "*.*p*" -exec perl -i -wpe 's/p class="error"/p class="alert alert-error"
-//find . -name "*.*p*" -exec perl -i -wpe 's/p class="alert alert-warning"/p class="alert alert-block"
+$execs = array( 
+"find $PATH -name \"*.*p*\" -exec perl -i -wpe 's/class=\"row\"/class=\"control-group\"/g' {} \;",
+"find $PATH -name \"*.*p*\" -exec perl -i -wpe 's/class=\"row\"/class=\"control-group\"/g' {} \;",
+"find $PATH -name \"*.*p*\" -exec perl -i -wpe 's/class=\"row submit/class=\"control-group submit/g' {} \;",
+//"find $PATH -name \"*.*p*\" -exec perl -i -wpe 's/input type=\"submit\"/input type=\"submit\" class=\"btn\"/g' {} \;",
+"find $PATH -name \"*.*p*\" -exec perl -i -wpe 's/table class=\"data/table class=\"table/g' {} \;",
+"find $PATH -name \"*.*p*\" -exec perl -i -wpe 's/p class=\"success\"/p class=\"alert alert-success\"/g' {} \;",
+"find $PATH -name \"*.*p*\" -exec perl -i -wpe 's/p class=\"warning\"/p class=\"alert alert-warning\"/g' {} \;",
+"find $PATH -name \"*.*p*\" -exec perl -i -wpe 's/p class=\"error\"/p class=\"alert alert-error\"/g' {} \;",
+"find $PATH -name \"*.*p*\" -exec perl -i -wpe 's/p class=\"alert alert-warning\"/p class=\"alert alert-block\"/g' {} \;",
+"find $PATH/modules/ -exec perl -i -wpe 's/\$gBitSmarty->assign( \(\'[^\']*\'\),\([^)]*\).*;/\$_template->tpl_vars[\1] = new Smarty_variable( \2 );",
+);
 
+foreach( $execs as $exec ) {
+	print "$exec\n";
+	exec( $exec );
+}
