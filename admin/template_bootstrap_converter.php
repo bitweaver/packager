@@ -93,7 +93,7 @@ $execs = array(
 "find $PATH -name \"*.*p*\" -exec perl -i -wpe 's/p class=\"warning\"/p class=\"alert alert-warning\"/g' {} \;",
 "find $PATH -name \"*.*p*\" -exec perl -i -wpe 's/p class=\"error\"/p class=\"alert alert-error\"/g' {} \;",
 "find $PATH -name \"*.*p*\" -exec perl -i -wpe 's/p class=\"alert alert-warning\"/p class=\"alert alert-block\"/g' {} \;",
-"find $PATH/modules/ -exec perl -i -wpe 's/\$gBitSmarty->assign( \(\'[^\']*\'\),\([^)]*\).*;/\$_template->tpl_vars[\1] = new Smarty_variable( \2 );",
+"find $PATH/modules/*php -exec perl -i -wpe \"s/gBitSmarty->assign[^\\\\(]*\\\\([ ]*('[^']*'),([^;]*);/_template->tpl_vars[\\$1] = new Smarty_variable(\\$2;/g\" {} \;",
 );
 
 foreach( $execs as $exec ) {
