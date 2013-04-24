@@ -31,11 +31,10 @@
 				</div>
 
 				<div class="control-group">
-					{formlabel label="Security Release" for="is_security_release"}
-					{forminput}
-						<input type="checkbox" name="is_security_release" id="is_security_release" {if $smarty.request.is_security_release}checked="checked"{/if} />
+					<label class="checkbox">
+						<input type="checkbox" name="is_security_release" id="is_security_release" {if $smarty.request.is_security_release}checked="checked"{/if} />Security Release
 						{formhelp note="Please check this if this is a security release. This will warn other users that they should update to at least this version to avoid security issues."}
-					{/forminput}
+					</label>
 				</div>
 
 				<div class="control-group">

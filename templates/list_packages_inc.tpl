@@ -1,4 +1,4 @@
-<table class="data">
+<table class="table data">
 	<caption>Available Packages</caption>
 	<tr>
 		<th>{smartlink step=$step ititle="Package" isort="package" idefault=1} ({smartlink step=$step ititle="Type" isort="package_type"})</th>

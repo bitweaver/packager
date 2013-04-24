@@ -48,11 +48,10 @@
 			</div>
 
 			<div class="control-group">
-				{formlabel label="Service" for="is_service"}
-				{forminput}
-					<input type="checkbox" name="is_service" id="is_service" {if $editInfo.is_service == 'y'}checked="checked"{/if} />
+				<label class="checkbox">
+					<input type="checkbox" name="is_service" id="is_service" {if $editInfo.is_service == 'y'}checked="checked"{/if} />Service
 					{formhelp note="If your package is a service, please check this box."}
-				{/forminput}
+				</label>
 			</div>
 
 			<div class="submit">

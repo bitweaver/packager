@@ -68,7 +68,7 @@
 			{/if}
 
 			{if $versionList}
-				<table class="data">
+				<table class="table data">
 					<caption>{tr}Available Versions{/tr}</caption>
 					<tr>
 						<th style="width:1%"> </th>

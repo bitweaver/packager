@@ -14,7 +14,7 @@
 
 	<h2>Tests</h2>
 	{if $smarty.request.perform_checks}
-		<table class="data">
+		<table class="table data">
 			<caption>Progress Report</caption>
 			<tr>
 				<th></th>
@@ -57,7 +57,7 @@
 			<input type="submit" class="btn" name="advance" value="Continue" />
 		</div>
 	{else}
-		<table class="data">
+		<table class="table data">
 			<caption>Progress Report</caption>
 			<tr>
 				<th></th>
