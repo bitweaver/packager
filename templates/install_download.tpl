@@ -62,12 +62,12 @@
 			{if $errors}
 				<p class="warning">Due to the errors mentioned above, we do not recommend that you continue. If you know what you are doing or you just want to give it a shot, you can continue at your own risk.</p>
 			{/if}
-			<input type="submit" class="btn" name="download" value="Repeat download" />
-			<input type="submit" class="btn" name="continue" value="Continue" />
+			<input type="submit" class="btn btn-default" name="download" value="Repeat download" />
+			<input type="submit" class="btn btn-default" name="continue" value="Continue" />
 		{elseif $progressReport}
-			<input type="submit" class="btn" name="continue" value="Continue" />
+			<input type="submit" class="btn btn-default" name="continue" value="Continue" />
 		{else}
-			<input type="submit" class="btn" name="download" value="Begin Download" />
+			<input type="submit" class="btn btn-default" name="download" value="Begin Download" />
 		{/if}
 	</div>
 {/form}

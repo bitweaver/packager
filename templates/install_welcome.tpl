@@ -49,6 +49,6 @@
 
 
 	<div class="control-group submit">
-		<input type="submit" class="btn" name="fSubmitWelcome" value="{$warningSubmit|default:"Let the Packaging begin!"}" />
+		<input type="submit" class="btn btn-default" name="fSubmitWelcome" value="{$warningSubmit|default:"Let the Packaging begin!"}" />
 	</div>
 {/form}

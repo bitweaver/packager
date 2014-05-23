@@ -32,7 +32,7 @@
 	{/legend}
 
 	<div class="control-group submit">
-		<input type="submit" class="btn" name="packager_settings" value="{tr}Change preferences{/tr}" />
+		<input type="submit" class="btn btn-default" name="packager_settings" value="{tr}Change preferences{/tr}" />
 	</div>
 {/form}
 {/strip}

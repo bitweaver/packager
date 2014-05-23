@@ -52,9 +52,9 @@
 
 		<div class="control-group submit">
 			{if $error}
-				<input type="submit" class="btn" name="perform_checks" value="Repeat Tests" />
+				<input type="submit" class="btn btn-default" name="perform_checks" value="Repeat Tests" />
 			{/if}
-			<input type="submit" class="btn" name="advance" value="Continue" />
+			<input type="submit" class="btn btn-default" name="advance" value="Continue" />
 		</div>
 	{else}
 		<table class="table data">
@@ -74,7 +74,7 @@
 		</table>
 
 		<div class="control-group submit">
-			<input type="submit" class="btn" name="perform_checks" value="Perform Tests" />
+			<input type="submit" class="btn btn-default" name="perform_checks" value="Perform Tests" />
 		</div>
 	{/if}
 {/form}

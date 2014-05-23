@@ -55,7 +55,7 @@
 			</div>
 
 			<div class="submit">
-				<input type="submit" class="btn" name="process_package" value="{tr}Store Package Details{/tr}" />
+				<input type="submit" class="btn btn-default" name="process_package" value="{tr}Store Package Details{/tr}" />
 			</div>
 
 			<h3>{tr}Enter new Package type if needed{/tr}</h3>

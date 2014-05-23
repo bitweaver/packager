@@ -54,7 +54,7 @@
 				</div>
 
 				<div class="submit">
-					<input type="submit" class="btn" name="process_package" value="{tr}Upload Package{/tr}" />
+					<input type="submit" class="btn btn-default" name="process_package" value="{tr}Upload Package{/tr}" />
 				</div>
 
 				{required legend=1}
