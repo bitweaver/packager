@@ -84,9 +84,9 @@ foreach( $iconMap AS $biticon=>$booticon ) {
 
 // CSS changes
 $execs = array( 
-"find $PATH -name \"*.*p*\" -exec perl -i -wpe 's/class=\"row\"/class=\"control-group\"/g' {} \;",
-"find $PATH -name \"*.*p*\" -exec perl -i -wpe 's/class=\"row\"/class=\"control-group\"/g' {} \;",
-"find $PATH -name \"*.*p*\" -exec perl -i -wpe 's/class=\"row submit/class=\"control-group submit/g' {} \;",
+"find $PATH -name \"*.*p*\" -exec perl -i -wpe 's/class=\"row\"/class=\"form-group\"/g' {} \;",
+"find $PATH -name \"*.*p*\" -exec perl -i -wpe 's/class=\"row\"/class=\"form-group\"/g' {} \;",
+"find $PATH -name \"*.*p*\" -exec perl -i -wpe 's/class=\"row submit/class=\"form-group submit/g' {} \;",
 //"find $PATH -name \"*.*p*\" -exec perl -i -wpe 's/input type=\"submit\"/input type=\"submit\" class=\"btn\"/g' {} \;",
 "find $PATH -name \"*.*p*\" -exec perl -i -wpe 's/table class=\"data/table class=\"table/g' {} \;",
 "find $PATH -name \"*.*p*\" -exec perl -i -wpe 's/p class=\"success\"/p class=\"alert alert-success\"/g' {} \;",

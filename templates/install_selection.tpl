@@ -6,7 +6,7 @@
 
 	{formfeedback hash=$feedback}
 
-	<div class="control-group">
+	<div class="form-group">
 		{forminput}
 			<script type="text/javascript">/* <![CDATA[ */
 				document.write("<label><input name=\"switcher\" id=\"switcher\" type=\"checkbox\" onclick=\"BitBase.switchCheckboxes(this.form.id,'upgrades[]','switcher')\" /> Batch (de)select all available Upgrades</label>");

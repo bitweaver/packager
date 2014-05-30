@@ -49,7 +49,7 @@
 	{/if}
 
 	{if $errors}
-		<div class="control-group">
+		<div class="form-group">
 			<label class="checkbox">
 				<input type="checkbox" name="ignore_versions" id="ignore_versions" />Ignore local versions
 				{formhelp note="If you check this, it will ignore the versions of all local files. Only check this if you know what you are doing."}

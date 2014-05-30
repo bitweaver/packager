@@ -10,7 +10,7 @@
 
 			<p class="help">{tr}Here you can describe the package you wish to upload. Please provide accurate information that users who are looking for new packages know what to expect when installing this particular package.{/tr}</p>
 
-			<div class="control-group">
+			<div class="form-group">
 				{formlabel label="Package" for="package"}
 				{forminput}
 					{if $editInfo.package}
@@ -23,7 +23,7 @@
 				{/forminput}
 			</div>
 
-			<div class="control-group">
+			<div class="form-group">
 				{formlabel label="Package description" for="description"}
 				{forminput}
 					<textarea rows="5" cols="50" name="description" id="description">{$editInfo.description|escape}</textarea>
@@ -31,7 +31,7 @@
 				{/forminput}
 			</div>
 
-			<div class="control-group">
+			<div class="form-group">
 				{formlabel label="Package Type" for="type_id"}
 				{forminput}
 					{html_options options=$packageTypes values=$packageTypes name=type_id id=type_id selected=$editInfo.type_id}{required}
@@ -39,7 +39,7 @@
 				{/forminput}
 			</div>
 
-			<div class="control-group">
+			<div class="form-group">
 				{formlabel label="License" for="license_id"}
 				{forminput}
 					{html_options options=$licenseTypes values=$licenseTypes name=license_id id=license_id selected=$editInfo.license_id}{required}
@@ -47,7 +47,7 @@
 				{/forminput}
 			</div>
 
-			<div class="control-group">
+			<div class="form-group">
 				<label class="checkbox">
 					<input type="checkbox" name="is_service" id="is_service" {if $editInfo.is_service == 'y'}checked="checked"{/if} />Service
 					{formhelp note="If your package is a service, please check this box."}
@@ -61,7 +61,7 @@
 			<h3>{tr}Enter new Package type if needed{/tr}</h3>
 			<p class="help">{tr}If there is no package type that fits your needs, please enter the details here.{/tr}</p>
 
-			<div class="control-group">
+			<div class="form-group">
 				{formlabel label="Package Type" for="type_new_title"}
 				{forminput}
 					<input type="text" name="type_new_title" id="type_new_title" size="30" />
@@ -71,14 +71,14 @@
 			<h3>{tr}Enter new License if needed{/tr}</h3>
 			<p class="help">{tr}If there is no license that fits your needs, please enter the details here.{/tr}</p>
 
-			<div class="control-group">
+			<div class="form-group">
 				{formlabel label="License Title" for="license_new_title"}
 				{forminput}
 					<input type="text" name="license_new_title" id="license_new_title" size="30" />
 				{/forminput}
 			</div>
 
-			<div class="control-group">
+			<div class="form-group">
 				{formlabel label="License URL" for="license_new_url"}
 				{forminput}
 					<input type="text" name="license_new_url" id="license_new_url" size="50" />

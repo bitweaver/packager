@@ -7,7 +7,7 @@
 		{form enctype="multipart/form-data" legend="Edit Version"}
 			{formfeedback hash=$feedback}
 
-			<div class="control-group">
+			<div class="form-group">
 				{formlabel label="Package" for="package"}
 				{forminput}
 					<input type="hidden" name="package" value="{$editInfo.package}" />
@@ -16,7 +16,7 @@
 				{/forminput}
 			</div>
 
-			<div class="control-group">
+			<div class="form-group">
 				{formlabel label="Version" for="version"}
 				{forminput}
 					<input type="hidden" name="version" value="{$editInfo.version}" />
@@ -24,14 +24,14 @@
 				{/forminput}
 			</div>
 
-			<div class="control-group">
+			<div class="form-group">
 				{formlabel label="Security Release" for="is_security_release"}
 				{forminput}
 					<input type="checkbox" name="is_security_release" id="is_security_release" {if $editInfo.is_security_release == 'y'}checked="checked"{/if} />
 				{/forminput}
 			</div>
 
-			<div class="control-group">
+			<div class="form-group">
 				{formlabel label="Changelog" for="changelog"}
 				{forminput}
 					<textarea rows="10" cols="50" name="changelog" id="changelog">
@@ -40,7 +40,7 @@
 				{/forminput}
 			</div>
 
-			<div class="control-group">
+			<div class="form-group">
 				{formlabel label="Dependencies" for="dependencies"}
 				{forminput}
 					<textarea rows="3" cols="50" name="dependencies" id="dependencies">

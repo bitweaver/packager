@@ -10,7 +10,7 @@
 				{formfeedback hash=$feedback}
 				<p class="help">{tr}This is where you can upload new packages and allow other users to easily download and install your work using the packager. Please fill in the information below as accurately as possible since that will allow other users decide on what packages they want to install more easily. If you are unsure on how to fill in any of the form fields or for a more detailed explanation of the individual points, please visit the <a href="http://www.bitweaver.org/wiki/PackagerPackage">PackagerPackage</a> webpage.{/tr}</p>
 
-				<div class="control-group">
+				<div class="form-group">
 					{formlabel label="Package" for="package"}
 					{forminput}
 						<select name="package" id="package">
@@ -22,7 +22,7 @@
 					{/forminput}
 				</div>
 
-				<div class="control-group">
+				<div class="form-group">
 					{formlabel label="Upload Package" for="package_upload"}
 					{forminput}
 						<input type="file" name="package_upload" id="package_upload" />{required}
@@ -30,14 +30,14 @@
 					{/forminput}
 				</div>
 
-				<div class="control-group">
+				<div class="form-group">
 					<label class="checkbox">
 						<input type="checkbox" name="is_security_release" id="is_security_release" {if $smarty.request.is_security_release}checked="checked"{/if} />Security Release
 						{formhelp note="Please check this if this is a security release. This will warn other users that they should update to at least this version to avoid security issues."}
 					</label>
 				</div>
 
-				<div class="control-group">
+				<div class="form-group">
 					{formlabel label="Changelog" for="changelog"}
 					{forminput}
 						<textarea rows="10" cols="50" name="changelog" id="changelog">{$smarty.request.changelog|escape}</textarea>
@@ -45,7 +45,7 @@
 					{/forminput}
 				</div>
 
-				<div class="control-group">
+				<div class="form-group">
 					{formlabel label="Dependencies" for="dependencies"}
 					{forminput}
 						<textarea rows="5" cols="50" name="dependencies" id="dependencies">{$smarty.request.dependencies|escape}</textarea>

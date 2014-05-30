@@ -33,7 +33,7 @@
 		<input type="submit" class="btn btn-default" name="upgrade" value="Perform Upgrade" />
 	</div>
 
-	<div class="control-group">
+	<div class="form-group">
 		{forminput}
 			<label><input type="checkbox" name="debug" value="true" /> Debug mode</label>
 			{formhelp note="This will display SQL statements."}

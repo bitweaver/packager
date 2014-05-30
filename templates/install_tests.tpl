@@ -50,7 +50,7 @@
 			<p class="success">Everything seems to have gone well. Using the package manager will probably work well.</p>
 		{/if}
 
-		<div class="control-group submit">
+		<div class="form-group submit">
 			{if $error}
 				<input type="submit" class="btn btn-default" name="perform_checks" value="Repeat Tests" />
 			{/if}
@@ -73,7 +73,7 @@
 			{/foreach}
 		</table>
 
-		<div class="control-group submit">
+		<div class="form-group submit">
 			<input type="submit" class="btn btn-default" name="perform_checks" value="Perform Tests" />
 		</div>
 	{/if}

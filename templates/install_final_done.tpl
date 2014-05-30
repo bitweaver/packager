@@ -12,7 +12,7 @@
 		will advance as development on it continues.
 	</p>
 
-	<div class="control-group submit">
+	<div class="form-group submit">
 		<input type="submit" class="btn btn-default" size="20" value="Enter Your bitweaver Site" />
 	</div>
 {/form}
